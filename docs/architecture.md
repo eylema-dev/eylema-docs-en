@@ -1,12 +1,12 @@
-# Eylema Architecture v0.3 — English canonical
+# Eylema Architecture v0.4 — English canonical
 
-**Architecture revision:** 0.3.1 · **Date:** 11 October 2026 · **Language:** English (canonical)
+**Architecture revision:** 0.4.0 · **Date:** 11 October 2026 · **Language:** English (canonical)
 
 **Product:** Eylema. **Descriptor:** A Simple, High-Performance Agentic AI Web Platform for Continuous Development and Operations.
 
 **Status:** Research-informed design, not an implemented framework, verified model support, or measured performance.
 
-**Turkish companion:** [Full Turkish architecture](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/architecture.md). **Translation revision:** 0.3.1. The original English v0.3 edition was translated from the Turkish source. This English edition establishes the canonical language policy; repository tooling now checks translation byte fingerprints and API identifier parity; semantic equivalence still requires review.
+**Turkish companion:** [Full Turkish architecture](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/architecture.md). **Translation revision:** 0.4.0. The original English v0.3 edition was translated from the Turkish source. This English edition establishes the canonical language policy; repository tooling now checks translation byte fingerprints and API identifier parity; semantic equivalence still requires review.
 
 ## Language policy
 
@@ -20,6 +20,22 @@ Simplicity belongs in the application contract and setup; renderer, tensor, and 
 
 The goal of AI-led development and operations covers coding, testing, review, execution, and improvement by authorized AI teams. Humans define goals, authority, and acceptance policies. Deterministic Rust remains a primary execution path; every frame or request does not require an LLM call.
 
+## Accepted experimental macOS scope
+
+The first release targets one Apple M4 Pro MacBook Pro with 24 GB unified memory. The observed build environment is macOS 27.0.1; actual toolchain/SDK/browser inventory and execution remain G04 and later acceptance work. Linux support and a second physical device are deferred. Several workloads measured on this Mac never count as multiple devices. The current repository stage remains documentation; selecting targets does not establish runtime support.
+
+| Surface | First-release contract |
+|---|---|
+| Local service and CLI | Owned Rust 1.99.0, aarch64-apple-darwin; deterministic executor, durable journal and loopback web service |
+| Model and tensor work | Owned Rust CPU reference and native_gpu through Metal; explicit platform bindings, lifetimes and unsafe boundary inventory |
+| Browser view | Portable Rust/Wasm components and WebGPU with WGSL; native server/filesystem packages are excluded from Wasm compilation |
+| Training | Separate pinned local Unsloth Studio/MLX recipe on this Mac; export must pass owned Rust acceptance before activation |
+| Development | Real Codex and Claude adapters plus GitHub are explicitly online; local operation/training never silently calls a hosted model |
+
+HardwareProfile identifies the one physical device and observed capacity. WorkloadProfile identifies execution target, backend, GPU API and exact workload/environment versions on that device. Assignments and evidence bind both identities through model-set schema 0.2.0; the historical 0.1.0 schema stays unchanged. Duplicate/dangling IDs, actual capacity, source/hash trust and evidence coverage need semantic validation; structural JSON validation cannot prove them.
+
+Browser closure does not terminate the local executor or Metal worker. Reopening attaches to current snapshots/events. The local session must enforce Host/Origin checks, CSRF protection, request size/time limits and scoped authority. Durable state defaults to Eylema's macOS Application Support directory; acknowledgement follows durable journal writes. Credentials, private raw training records and hidden model reasoning are excluded from ordinary event records. Platform randomness and hashes use standard macOS services, not new cryptography. macOS, SDKs, browser, drivers, host bindings, Metal shaders and WGSL remain explicit dependencies.
+
 ## Topology
 
 ```mermaid
@@ -29,7 +45,7 @@ flowchart TB
     D --> P[Code and model PR: test, review, acceptance]
     P --> R[Versioned application and model team]
     R --> B[Browser: Rust/Wasm and WebGPU]
-    R --> N[Local Linux: Rust executor]
+    R --> N[Local macOS: Rust executor]
     B --> O[Operations: state, decision, action, outcome]
     N --> O
     O --> E[Permitted experience and evaluation records]
@@ -145,7 +161,7 @@ Each operation documents purpose, inputs/outputs, preconditions, effects, author
 | 2 | Deterministic decision baseline, own tensor operations, small learned policy/dynamics model | Prediction/observation error, closed-loop success, CPU/GPU parity |
 | 3 | One supported small local language model and shared GPU management | LLM, decisions, and scene meet quality/resource limits together |
 | 4 | Experience records, human corrections, first Unsloth recipe/model acceptance | Traceable data-to-model improvement on separated evaluation tasks |
-| 5 | Large-AI team orchestration, GitHub PR workflow, hardware-based team release | Real requirement-to-PR flow; justified assignment on two resource profiles |
+| 5 | Large-AI team orchestration, GitHub PR workflow, hardware-based team release | Real requirement-to-PR flow; justified assignment across two workloads on one physical Mac |
 | 6 | Production web features and contribution ecosystem | Selected production protocols and independent contribution compatibility |
 
 API and evaluation definitions belong in every slice. The maintainer selected the task core and web flow as the first working application. [Project structure and acceptance scenarios](project-structure.md) describe the proposed implementation. A small 3D warehouse/placement environment follows that proof, with learned decisions and natural-language goals added at later milestones. None of these runtime scenarios has been implemented.
@@ -158,6 +174,6 @@ Building our own web engine, renderer, model runtime, and training ecosystem is 
 - [Learning data and training protocol](learning-and-training.md)
 - [English API reference](api-reference.md)
 - [Development request JSON Schema](https://github.com/eylema-dev/eylema/blob/main/ai-team-protocol/request.schema.json)
-- [Local model team JSON Schema](https://github.com/eylema-dev/eylema/blob/main/ai-team-protocol/model-set-release.schema.json)
+- [Local model team JSON Schema](https://github.com/eylema-dev/eylema/blob/main/ai-team-protocol/v0.2/model-set-release.schema.json)
 
 These are architecture and structural-contract deliverables. Repository contribution tooling and PR work are separate from the planned autonomous development team. No training, model/device benchmark, framework execution or scheduled monitoring is demonstrated by these documents.

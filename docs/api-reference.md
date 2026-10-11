@@ -1,6 +1,6 @@
 ---
 docs_language: en
-source_revision: 0.1.0
+source_revision: 0.2.0
 status: design
 canonical_language: en
 ---
@@ -15,7 +15,15 @@ Human interfaces, development agents, local models and deterministic Rust skills
 
 Owned, versioned typed definitions will become the canonical machine contract. The proposed build produces OpenAPI, JSON Schema, MCP tool descriptions and a Rust SDK from those definitions. Adapters cannot widen authority, invent defaults or translate failures into success. This generation design does not introduce third-party production dependencies. Existing schemas cover selected artifacts, not this entire API.
 
-Permissions compose per operation: inspecting a model does not permit training it; proposing a release does not permit activating it. A deployment may assign several permissions to one principal while requiring separate approval for selected transitions. Browser clients cannot acquire native filesystem, process or GPU privileges by selecting `native_linux` in a request.
+Permissions compose per operation: inspecting a model does not permit training it; proposing a release does not permit activating it. A deployment may assign several permissions to one principal while requiring separate approval for selected transitions. Browser clients cannot acquire native filesystem, process or GPU privileges by selecting `native_macos` in a request.
+
+## First-release targets and workload binding
+
+The experimental contract uses `native_macos` on one M4 Pro/24 GB Mac and `browser` on that same device. `native_linux` and second-device acceptance are future scope. The metadata table names permitted contexts; `listCapabilities` must report only implemented and accepted operations/backends. CPU uses `native_cpu` / `none`, Metal uses `native_gpu` / `metal`, browser CPU uses `wasm_cpu` / `none`, and WebGPU uses `webgpu` / `webgpu`. Here each pair is backend / `gpu_api`.
+
+`HardwareProfile` records the physical device; `WorkloadProfile` records `target`, `backend`, `gpu_api`, `workload_ref`, `workload_sha256` and `environment_ref`. Model-set `schema_version` 0.2.0 requires `workload_profiles`; assignments/evidence carry `hardware_profile_id` and `workload_profile_id`. Consumers resolve both references, reject duplicates/dangling IDs and verify matching physical bindings before acceptance. Schema validity or an opaque reference is not execution evidence. The root model-set 0.1.0 contract remains historical; new Mac manifests use `ai-team-protocol/v0.2/model-set-release.schema.json`. `runtime_protocol_version` remains 0.1.0 independently of this manifest revision. Document source revision is 0.2.0; operation routes remain /v0.1.
+
+Native service/CLI/model work and browser rendering have separate authority. Loopback service requires a local session, Host/Origin and CSRF checks, bounded input/time and explicit errors. Closing the browser leaves native execution alive; reopening reads snapshots/events. Storage acknowledgements follow durable journal writes in Eylema's Application Support directory. Models propose actions; they cannot authorize them. All of this remains an unimplemented contract until its runtime acceptance gate passes.
 
 ## Oversight mechanisms
 
@@ -38,7 +46,7 @@ Every published operation must provide this template before implementation is ac
 | `operation_id`, `operation_version` | Stable identifier and compatible contract version |
 | `request_schema_ref`, `response_schema_ref`, `error_schema_ref` | Exact versions, required fields, bounds and rejected examples |
 | `side_effect_class`, `resource_scope` | Read, record mutation, compute or external effect; exact authorized resources |
-| `execution_context`, `required_capabilities` | Supported `browser` / `native_linux` targets and actual prerequisites |
+| `execution_context`, `required_capabilities` | Supported `browser` / `native_macos` targets and actual prerequisites |
 | `permissions`, `oversight_requirements` | Principal permissions and composed oversight obligations |
 | `preconditions`, `expected_revision` | State assumptions and concurrency checks |
 | `approval_binding`, `policy_revision` | Applicable decision record and governing policy |
