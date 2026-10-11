@@ -1,6 +1,6 @@
 # Eylema first-release roadmap
 
-Revision **0.2.0**, 11 October 2026. English is canonical; [Türkçe](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/roadmap.md). Target: **v0.1.0 experimental**, not a production-ready universal framework. Milestones are acceptance gates, not delivery-date promises. Only repository documents exist today; M0 is proposed by the contribution-foundation PR until merged and checked on `main`.
+Revision **0.2.0**, 11 October 2026. English is canonical; [Türkçe](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/roadmap.md). Target: **v0.1.0 experimental**, not a production-ready universal framework. Milestones are acceptance gates, not delivery-date promises. Only repository documents and tooling exist today. The initial M0 contribution foundation landed in core PR #2; this repository split remains under review until its own PRs are merged and checked on `main`.
 
 ## The selected first working application
 
