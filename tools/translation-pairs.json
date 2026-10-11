@@ -1,0 +1,49 @@
+{
+  "version": "0.2.0",
+  "purpose": "Reviewed local bytes; split product translations are paired and pinned in devguide/tools/repository-set.json. Hashes do not prove semantic equivalence.",
+  "pairs": [
+    {
+      "en": "CONTRIBUTING.md",
+      "tr": "CONTRIBUTING.tr.md",
+      "en_sha256": "4181fdc624502cf1341c9e69b4e58d10bdbdc334e170426f9a4ad345a0601823",
+      "tr_sha256": "256a2a976dcd654638eb7e210bf7939f5aef81e62ced4f5d61fab28d065e8612"
+    }
+  ],
+  "documents": [
+    {
+      "path": "README.md",
+      "language": "en",
+      "sha256": "2549ffa28b7a2a6d4addc4e4fdc1926ed748533906693da0fc5cb0a785d25bf3"
+    },
+    {
+      "path": "docs/api-reference.md",
+      "language": "en",
+      "sha256": "7614b6dfdb14ffa13b0a308469b4adfb9608d6a9ed8dae8cc1c88d33b2607e0c"
+    },
+    {
+      "path": "docs/architecture.md",
+      "language": "en",
+      "sha256": "5216be56972d5224bbe91f85a6a4523f191eadd9f2184cfd508df66182bebbed"
+    },
+    {
+      "path": "docs/development-and-operations.md",
+      "language": "en",
+      "sha256": "f5bc7a62bf4a1dde8f3a590f9771cb9f8b19742124b8209c95df78d16641f2c0"
+    },
+    {
+      "path": "docs/learning-and-training.md",
+      "language": "en",
+      "sha256": "b6932cc605544721cb0767f4cd4e72898168b01d33527707d198fee0b624665b"
+    },
+    {
+      "path": "docs/project-structure.md",
+      "language": "en",
+      "sha256": "e282a6f4d108d5e0901898eec6e474a9117012164414dd4accc4b9512c4a1137"
+    },
+    {
+      "path": "docs/roadmap.md",
+      "language": "en",
+      "sha256": "90e3a51f2ac4aba592d758981a6018a0b8590457beb545671b4adaeabe930254"
+    }
+  ]
+}
