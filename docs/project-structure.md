@@ -1,6 +1,6 @@
 # Project structure and first working application
 
-Revision **0.1.0**, 11 October 2026. [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/project-structure.md).
+Revision **0.2.0**, 11 October 2026. [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/project-structure.md).
 
 **Accepted direction:** prove the task core and web interface first: create, run, stop, save and reopen a task. The maintainer selected this flow on 11 October 2026. **Proposed implementation:** the component names, dependency layout and workload below are for architecture review before EYL-003. No Rust workspace or application is implemented by this document.
 
@@ -40,9 +40,15 @@ flowchart TD
     Journal --> Contracts
 ```
 
-Dependencies point toward contracts. The runtime does not import browser, GitHub or model-provider integrations. The host coordinates persistence and execution; the web component cannot bypass authority checks or write the journal directly. Wire formats are adapters over the same versioned semantics. Future browser/Wasm execution receives its own supported capability profile; a browser interface connected to Linux does not prove that the runtime runs in Wasm.
+Dependencies point toward contracts. The runtime does not import browser, GitHub or model-provider integrations. The host coordinates persistence and execution; the web component cannot bypass authority checks or write the journal directly. Wire formats are adapters over the same versioned semantics. Future browser/Wasm execution receives its own supported capability profile; a browser interface connected to macOS does not prove that the runtime runs in Wasm.
 
-Use owned Rust production code and no external production Cargo packages under the current policy. Rust, the browser, operating system and any required host bindings remain explicit dependencies. CI Python stays outside the application runtime. Exact toolchain, journal format, request encoding and any host bindings must be selected and inventoried before implementation, not inferred from this directory proposal.
+Use owned Rust production code and no external production Cargo packages under the current policy. Rust, the browser, operating system and any required host bindings remain explicit dependencies. CI Python stays outside the application runtime. Rust 1.99.0 and aarch64-apple-darwin are selected for the native Mac target, with wasm32-unknown-unknown for explicitly portable libraries. G04 must inventory actual tools/SDKs/browser; G07 must activate real compilation/test gates before Rust source is accepted. Journal format, request encoding and host bindings need their own reviewed implementation.
+
+## Mac host and portable-library boundary
+
+The first experimental device is one Apple M4 Pro MacBook Pro with 24 GB unified memory; macOS 27.0.1 is observed, with tool inventory and actual execution still pending G04. Native service/CLI, durable journal and later CPU/Metal model workers belong to the host. Browser rendering uses Wasm/WebGPU/WGSL on that same device. Compile only reviewed portable libraries to Wasm; the filesystem/server host is native. Neither target selection nor cross-compilation establishes accepted execution.
+
+Later Metal/model/orchestrator modules are added only with tested boundaries and real consumers. Browser closure does not stop the native worker; reopening attaches to saved state/events. Journal state defaults to macOS Application Support/Eylema, with acknowledgement after durable writes and no private raw training material or credentials in ordinary records. Linux and second-device acceptance remain future scope.
 
 ## Acceptance for the first browser demonstration
 
@@ -60,7 +66,7 @@ Task identity and execution identity remain separate, following the [API contrac
 
 The storage contract must state when a write becomes durable and how journal failure affects acknowledgement. A stop request is not success evidence, and an elapsed deadline is not proof that work stopped. Restarting must not silently re-execute uncertain external effects. The initial workload avoids external effects, but its records must preserve the distinction.
 
-First run the Rust state-machine and recovery tests on Linux, then demonstrate the interface in a named browser against that service. Separately report Wasm compilation and any actual Wasm execution. M1/M2 do not establish WebGPU, model inference, training or autonomous development support.
+First run the Rust state-machine and recovery tests natively on the M4 Pro Mac, then demonstrate the interface in a named browser against that service. Separately report Wasm compilation and any actual Wasm execution. M1/M2 do not establish WebGPU, model inference, training or autonomous development support.
 
 ## Decisions to make before implementation
 
@@ -68,9 +74,9 @@ First run the Rust state-machine and recovery tests on Linux, then demonstrate t
 |---|---|---|
 | First product outcome | Task core and web flow above | Selected by the maintainer; record changes to this goal explicitly |
 | Workspace boundaries and workload | Component table and bounded deterministic steps | Review the proposal before EYL-003; directory names are not published packages |
-| Toolchain and first devices | One measured Linux environment and one browser/device combination | Pin the Rust release/targets and name the actual execution environments in EYL-002/EYL-003 |
+| Toolchain and first devices | One M4 Pro/24 GB physical Mac and separately bound native/browser workload profiles | Verify Rust 1.99.0/targets and observed macOS/SDK/browser inventory in G04; measure workloads on this device, with Linux and second physical device deferred |
 | Persistence and recovery | Local append/replay journal with explicit durability semantics | Fix format/version, torn-write detection, replay/idempotency retention and in-flight recovery behavior in EYL-005 |
-| Initial network exposure | Propose a loopback-only local prototype | Define browser origin, request limits and authority handling before EYL-006; remote use needs a separate authentication/TLS design |
+| Initial network exposure | Propose a loopback-only local prototype | Require local session, Host/Origin, CSRF, request limits and authority checks before EYL-006; remote use needs a separate authentication/TLS design |
 | Public distribution terms | License selection is pending | Maintainer decides EYL-001; public source visibility does not settle reuse terms |
 
 The next implementation task is EYL-003 after the component proposal and required environment decisions are accepted. Build the smallest workspace needed by EYL-004, connect real Rust CI and replace the documentation-only source guard in that same change. EYL-005 and EYL-006 complete the first saved-task browser flow. Separate acceptance remains necessary for every later capability.

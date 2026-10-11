@@ -1,8 +1,8 @@
-Revision: **0.1.0** · Canonical language: **EN** · Secondary language: **TR** · [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/development-and-operations.md)
+Revision: **0.2.0** · Canonical language: **EN** · Secondary language: **TR** · [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/development-and-operations.md)
 
-# Eylema — Development and local operations team protocols — v0.1
+# Eylema — Development and local operations team protocols — v0.2
 
-Date: 11 October 2026. Status: **protocol design to implement**. No working orchestrator, model selection, autonomous PR generation, or scheduled monitoring has been installed. Repository contribution templates and CI gates are defined separately in [CONTRIBUTING.md](https://github.com/eylema-dev/devguide/blob/main/CONTRIBUTING.md). Schema version: 0.1.0. Examples are not actual tasks, models, or measurements.
+Date: 11 October 2026. Status: **protocol design to implement**. No working orchestrator, model selection, autonomous PR generation, or scheduled monitoring has been installed. Repository contribution templates and CI gates are defined separately in [CONTRIBUTING.md](https://github.com/eylema-dev/devguide/blob/main/CONTRIBUTING.md). NeedSpec schema and runtime protocol remain 0.1.0; the new macOS ModelSetRelease schema is 0.2.0. Examples are not actual tasks, models, or measurements.
 
 Related designs: [architecture](architecture.md), [behavioral API and human oversight](api-reference.md), and [learning data and training](learning-and-training.md).
 
@@ -13,6 +13,14 @@ Related designs: [architecture](architecture.md), [behavioral API and human over
 **Operations team:** specialist models and Rust skills on the application's device or designated local node perform daily tasks within accepted model/tool/permission packages. Tasks do not silently move to cloud models. Development access to external models is not blanket permission to export operational data.
 
 Both teams require executed evidence tied to the same version. Model explanations are not test results. A Rust controller will enforce transitions and permissions; models submit structured proposals.
+
+## Accepted macOS execution context
+
+The experimental release uses one Apple M4 Pro MacBook Pro with 24 GB unified memory. Local operations run on native macOS with owned Rust CPU/Metal components; the browser uses portable Wasm/WebGPU components on that same device. Linux and second-device acceptance are future work. Two workload profiles do not mean two hardware devices. Browser closure leaves the native executor alive; the reopened view attaches to snapshots/events.
+
+Model-set 0.2.0 binds every assignment/evidence item to both HardwareProfile and WorkloadProfile. Resolve IDs and verify the physical-device match, observed capacities, exact workload/environment and actual evidence before acceptance. The synthetic candidate validates structure only. Runtime protocol 0.1.0 and NeedSpec 0.1.0 are separate contracts. This document does not implement any of them.
+
+The first development adapters are real Codex and Claude, with explicit online provider and GitHub access. Record invoked model and effort settings, tool versions and verifiable outcomes in Goal/run evidence; an invocation setting is not independent proof of the hidden runtime model. Provider access does not authorize exporting local operational/training data or expanding repository permissions.
 
 ## A — Development: need to GitHub pull request
 
@@ -71,7 +79,7 @@ Use isolated branches/workspaces. Parallel agents require file ownership or expl
 
 Results distinguish `passed`, `failed`, `skipped`, `not_run`, and `not_applicable`. Required skipped/unrun checks block readiness. Only the versioned quality profile can establish inapplicability; models cannot waive requirements arbitrarily.
 
-New commits invalidate affected evidence/reviews. Target-branch changes require rechecking integration behavior. Cross-compilation is not Linux execution; CPU fallback is not GPU testing. Run cheap checks first and relevant expensive browser/hardware checks afterward.
+New commits invalidate affected evidence/reviews. Target-branch changes require rechecking integration behavior. Cross-compilation is not native execution; macOS execution and deferred Linux support require distinct evidence; CPU fallback is not GPU testing. Run cheap checks first and relevant expensive browser/hardware checks afterward.
 
 A PR changing checks or authorization cannot approve itself under its proposed rules. The controller uses the accepted policy version; standards changes receive separate review.
 
@@ -91,9 +99,9 @@ Separate contributor/agent code execution from the control environment holding G
 
 | Object | Contents |
 |---|---|
-| `HardwareProfile` | CPU/OS/browser, backend, features, observed capacity, version |
+| `HardwareProfile` | Physical device ID, chip/architecture, OS version, observed unified-memory capacity, version |
 | `ResourceSnapshot` | Current load, allocatable-resource estimate, queue, power, timestamp |
-| `WorkloadProfile` | Task, language/data type, quality threshold, context/output and resource/latency limits |
+| `WorkloadProfile` | Physical-device binding, target/backend/GPU API, task/data, quality/context/resource limits, exact workload and environment references |
 | `ModelCatalogEntry` | Source revision, weight hash, tokenizer, architecture, quantization, engine compatibility |
 | `EvaluationReport` | Actual model/team task and hardware results with version/environment bindings |
 | `ModelSetRelease` | Jointly accepted models, roles, profiles, options, evidence |
@@ -153,12 +161,14 @@ Canary observes limited usage. Threshold violations reactivate the previous comp
 
 A contributor reports slow classification on one device class. The development team defines acceptance and compares the current small model with a lighter candidate on identical tasks, improving the owned Rust computation path if necessary. Code/model/policy changes become a draft PR with separate review and measurements. After repository checks and acceptance, the device manager trials the approved set and updates assignments. Reject latency gains that violate quality thresholds.
 
-Initial implementation evidence must connect a real need to a real PR and demonstrate distinct, measurement-justified assignments on at least two resource profiles. These flows have not run; no device/model selection has been made.
+Initial implementation evidence must connect a real need to a real PR and demonstrate distinct, measurement-justified assignments across at least two workload profiles on the same M4 Pro/24 GB Mac. These flows have not run; the device target is selected, while measurements and accepted model assignments remain pending.
 
 ## Machine-readable starting files
 
 - `ai-team-protocol/request.schema.json`: development-request structure.
 - `ai-team-protocol/request.example.json`: example, not an actual task or authorization.
-- `ai-team-protocol/model-set-release.schema.json`: candidate/accepted model-set structure.
+- `ai-team-protocol/model-set-release.schema.json`: preserved historical 0.1.0 model-set structure.
+- `ai-team-protocol/v0.2/model-set-release.schema.json`: macOS candidate/accepted structure with one physical device and separately bound workloads.
+- `ai-team-protocol/v0.2/model-set-release.example.json`: synthetic candidate; not an accepted model set or hardware result.
 
 JSON Schema validates structure only. Identity/authority, compatibility, hashes, cross-references, trusted evidence producers, and state transitions require Rust semantic checks. Schema validity does not prove a working framework or AI team.

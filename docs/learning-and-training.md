@@ -1,6 +1,6 @@
-Revision: **0.1.0** · Canonical language: **EN** · Secondary language: **TR** · [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/learning-and-training.md)
+Revision: **0.2.0** · Canonical language: **EN** · Secondary language: **TR** · [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/learning-and-training.md)
 
-# Eylema — Learning data and training protocol — v0.1
+# Eylema — Learning data and training protocol — v0.2
 
 Date: 11 October 2026. Status: **design proposal**. This document does not enable collection, training, or deployment. No training, export, performance measurement, or model acceptance test has run.
 
@@ -13,6 +13,12 @@ The goal is to accumulate attributable, verifiable examples that improve local m
 Our production Rust components will manage collection policy, task execution, model assignment, and accepted model packages. Unsloth is an explicitly selected external development tool within the training and packaging environment. Python, training libraries, and converters enter that environment's dependency inventory, without becoming hidden Rust runtime dependencies. Training-server failure must not stop accepted applications.
 
 Flow: permitted events → episode/feedback ledger → selection and verification → immutable dataset release → pinned training recipe → candidate model → independent evaluation → release PR → authorized approval → canary → activation or rollback. Skill/workflow teaching is versioned separately from weight training; training is optional when a skill change solves the measured need.
+
+## First-release local training boundary
+
+The first training target is the same M4 Pro/24 GB Mac used for native Metal and browser workloads. Unsloth's current requirements describe a Studio Mac/MLX training path; this does not prove the installed build, selected model or export recipe works. Core's Apple path remains a separate evolving support claim. G35 must verify the installed version and complete a bounded, pinned local recipe; unsupported training fails explicitly, without substituting an engine or hosted service. [Unsloth requirements](https://unsloth.ai/docs/get-started/fine-tuning-for-beginners/unsloth-requirements)
+
+The documented training Python range is 3.11–3.13, separate from CI Python 3.14. Record resolved dependencies, base-model/data hashes, method and export versions. CPU FP32 reference and intended Metal FP16 execution are separate acceptance steps; quantization is optional. Training, rendering and inference contend for one physical GPU/memory pool: measure separate workload profiles, not invented additional devices. No local training or exported model acceptance has run in this documentation Goal.
 
 ## Records and permission
 
