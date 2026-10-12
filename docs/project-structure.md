@@ -1,58 +1,71 @@
-# Project structure and first working application
+# Project structure and accepted first-product decisions
 
-Revision **0.2.0**, 11 October 2026. [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/project-structure.md).
+Revision **0.3.0**, 12 October 2026. [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/project-structure.md).
 
-**Accepted direction:** prove the task core and web interface first: create, run, stop, save and reopen a task. The maintainer selected this flow on 11 October 2026. **Proposed implementation:** the component names, dependency layout and workload below are for architecture review before EYL-003. No Rust workspace or application is implemented by this document.
+The maintainer accepted recommendations 1, 2, 4, 5, 6 and 8, supplied the three-device inventory below and selected Apache-2.0 on 12 October 2026. These decisions update the current product direction. They do not rewrite historical Goal records or claim that remaining runtime, model or hardware acceptance has passed.
 
-## One platform, a small first application
+## First user and product outcome
 
-Eylema's long-term scope remains a Rust web platform for AI-assisted development and local agent operations. The first application establishes reliable task execution and recovery. The later 3D, GPU, model and learning milestones extend that foundation; they are not prerequisites for the first browser demonstration.
+The first user is a developer building a local agent application. The first deliverable is a single-user task console: create a task, execute bounded deterministic steps, inspect progress/results, stop authorized remaining work, restart the service and reopen the same durable task. Initial steps change only application-owned task state. Remote administration, multiple tenants and arbitrary filesystem/process/network actions are outside this first product.
 
-Proposed workload: a bounded sequence of deterministic steps with visible progress and a recorded result. Steps update only the application's own task state. A person can create a task, start it, inspect its events, stop remaining work, restart the local service and reopen the same saved task. This gives the state, authority, cancellation and persistence contracts a concrete test without requiring model access or a GPU.
+A usable task-console preview is evaluated at M2 without waiting for GPU, models or training. A small real need-to-PR proof follows the accepted core/example base and precedes the optional learning work. Full autonomous development/provider acceptance and the complete experimental release keep their separate M7/G44/G45 gates. The small 3D placement environment is a reference application for later capabilities, not a prerequisite for the first user's task console.
 
-## Language and repository layout
+Core already contains Rust task/runtime/journal/host/web components and a CLI. See [current core status](https://github.com/eylema-dev/eylema/blob/main/README.md) and its revision-bound evidence. Real person authentication remains an explicit limitation: the stock non-human session cannot prove the effective human-authorized stop scenario by receiving FORBIDDEN. This decision does not waive F3 or authorize weakening that check.
 
-English is canonical and Turkish is its synchronized companion. Code, identifiers, templates and technical records use English. The [organization repository map](https://github.com/eylema-dev/devguide/blob/main/docs/en/repository-map.md) owns repository boundaries. This repository owns the current English product documents; core Rust components and schemas stay together in `eylema`. Contribution policy lives in `devguide`. The split changes document ownership, not the proposed runtime architecture below.
+## Language, ownership and component boundaries
 
-## Proposed Rust components
+English is canonical; Turkish is the synchronized companion. Code, identifiers, templates and task records remain English. The [repository map](https://github.com/eylema-dev/devguide/blob/main/docs/en/repository-map.md) owns repository boundaries. Product contracts stay in the language repositories, shared contribution policy in devguide, and implementation/schemas in core.
 
-Start with one Cargo workspace and one local host process. These are module responsibilities, not a requirement to introduce independently deployed services. Add a crate only when its boundary has executable tests and an actual consumer.
+Use one owned Rust workspace and one local native host process. Add a module/crate only for a tested boundary and an actual consumer.
 
-| Planned component | Owns | Allowed direct project dependencies |
-|---|---|---|
-| `crates/eylema-contracts` | Versioned task, proposal, execution, command, event, permission, budget and error types | None |
-| `crates/eylema-runtime` | Deterministic transitions, admission checks, bounded step execution and effective cancellation | `eylema-contracts` |
-| `crates/eylema-journal` | Versioned local records, append/replay and explicit recovery failures | `eylema-contracts` |
-| `crates/eylema-web` | Minimal HTML interface, bounded request decoding and response/event presentation | `eylema-contracts` |
-| `apps/eylema` | Host entry point, local configuration and composition of runtime, journal and web | The four components above |
-| `eylema-examples/task-console` | Reproducible task definition, fixtures and browser walkthrough | Public application contracts |
+| Component | Responsibility |
+|---|---|
+| `crates/eylema-contracts` | Canonical Rust domain types, versioned transitions, bounded EYL wire records and approval payload construction |
+| `crates/eylema-runtime` | Scoped admission, deterministic steps, authority, budgets, observations and effective cancellation |
+| `crates/eylema-journal` | Bounded EYLJ append/replay, explicit durability and corruption errors |
+| `crates/eylema-platform` | Narrow standard host crypto/entropy/synchronization and native GPU bindings |
+| `crates/eylema-host` | Runtime/journal composition, durable recovery and local service boundary |
+| `crates/eylema-web` | Local browser interface and bounded presentation/transport adapters |
+| `apps/eylema` | Native CLI/service composition and configuration |
+| `eylema-examples/task-console` | External consumer pinned to a core revision; no fork of runtime code |
 
-The task-console example is an external consumer in `eylema-examples`, pinned to a core revision; it is not another crate in the core workspace. Core unit/recovery fixtures remain with the implementation they verify.
+Dependencies point toward contracts. The host owns execution, authority and persistence. The browser presents state and uses declared GPU capabilities; it cannot directly modify the journal or confer native authority. Browser closure leaves native work alive; reopening reads snapshots/events. Rust 1.99.0 and aarch64-apple-darwin remain the native baseline; selected portable libraries compile to wasm32-unknown-unknown. Compilation and actual target execution are separate evidence.
 
-```mermaid
-flowchart TD
-    Browser[Browser: task interface] --> Host[eylema host: local service]
-    Host --> Web[eylema-web]
-    Host --> Runtime[eylema-runtime]
-    Host --> Journal[eylema-journal]
-    Web --> Contracts[eylema-contracts]
-    Runtime --> Contracts
-    Journal --> Contracts
-```
+## Available test inventory
 
-Dependencies point toward contracts. The runtime does not import browser, GitHub or model-provider integrations. The host coordinates persistence and execution; the web component cannot bypass authority checks or write the journal directly. Wire formats are adapters over the same versioned semantics. Future browser/Wasm execution receives its own supported capability profile; a browser interface connected to macOS does not prove that the runtime runs in Wasm.
+These aliases record the maintainer's available equipment, not accepted runtime HardwareProfile IDs. Materialize each measured HardwareProfile and its WorkloadProfiles with exact OS, CPU/GPU, SDK/driver/browser versions, workload hashes and code revision. One device with two workloads is still one physical device.
 
-Use owned Rust production code and no external production Cargo packages under the current policy. Rust, the browser, operating system and any required host bindings remain explicit dependencies. CI Python stays outside the application runtime. Rust 1.99.0 and aarch64-apple-darwin are selected for the native Mac target, with wasm32-unknown-unknown for explicitly portable libraries. G04 must inventory actual tools/SDKs/browser; G07 must activate real compilation/test gates before Rust source is accepted. Journal format, request encoding and host bindings need their own reviewed implementation.
+| Inventory alias | Owner-reported equipment | Initial role | Evidence boundary |
+|---|---|---|---|
+| `mbp-m4-pro-24` | MacBook Pro, Apple M4 Pro, 24 GB unified memory | Primary local task-console acceptance; later CPU/Metal and browser WebGPU measurements | Existing core evidence is scoped to this device; this decision change does not rerun hardware acceptance |
+| `mini-m4-24` | Mac mini, Apple M4, 24 GB unified memory | Second physical Mac compatibility and resource comparison | OS/tools/browser and all Eylema execution on this device: not_run |
+| `rtx4070ti-super-16-32` | NVIDIA RTX 4070 Ti Super, 16 GB VRAM, 32 GB system RAM | Later discrete-GPU comparison and training feasibility | Linux owner-confirmed; CPU/distribution/kernel unconfirmed; driver/backend/access and all Eylema execution: not_run |
 
-## Mac host and portable-library boundary
+The two additional machines do not block the primary task-console preview. Their acceptance is a separate bounded task; an inventory row does not enable a Linux/Windows backend or authorize remote access, installation or training. Apple unified memory and RTX dedicated VRAM/system RAM are recorded separately, never combined into an invented interchangeable budget.
 
-The first experimental device is one Apple M4 Pro MacBook Pro with 24 GB unified memory; macOS 27.0.1 is observed, with tool inventory and actual execution still pending G04. Native service/CLI, durable journal and later CPU/Metal model workers belong to the host. Browser rendering uses Wasm/WebGPU/WGSL on that same device. Compile only reviewed portable libraries to Wasm; the filesystem/server host is native. Neither target selection nor cross-compilation establishes accepted execution.
+First measure the same versioned deterministic task with fixed inputs, cold/warm startup, task latency p95/p99, peak memory and successful/incorrect action counts. For GPU work add reference-output tolerance, frame-time distribution and combined workload memory. Freeze numerical quality/resource thresholds after baseline measurement and before candidate comparison. Unavailable observations remain unknown/not_run.
 
-Later Metal/model/orchestrator modules are added only with tested boundaries and real consumers. Browser closure does not stop the native worker; reopening attaches to saved state/events. Journal state defaults to macOS Application Support/Eylema, with acknowledgement after durable writes and no private raw training material or credentials in ordinary records. Linux and second-device acceptance remain future scope.
+## Fixed task, storage and API decisions
+
+| Concern | Accepted first implementation contract |
+|---|---|
+| Semantic source | Owned Rust types and constructors in eylema-contracts; HTTP/CLI/browser adapters use the same semantics. OpenAPI/JSON Schema/MCP generation is future work, with parity fixtures required before claiming generated support |
+| State and authority | Task and execution identities remain separate; stale revisions and unauthorized effects fail; success, failure, effective cancellation and unknown outcome remain distinct |
+| Canonical approval | Existing EYL codec v1 and canonical_approval_payload bind typed task/proposal/action fields; standard host SHA-256 hashes those bytes. Maps/sets have deterministic ordering; transport request/correlation IDs are excluded; no implicit text normalization or float encoding |
+| Persistence | Existing EYLJ v1 journal in a host-owned local directory, intent/commit records and durable acknowledgement; corrupt/torn/incompatible input fails without silent repair or migration |
+| Replay retention | Retained admission keys/results survive validated journal replay; no automatic eviction, rotation or time-based expiry is added. Finite capacity exhaustion fails explicitly rather than admitting a duplicate |
+| Restart | Confirmed identities/results/effects survive. Unfinished execution becomes OutcomeUnknown; old sessions retire and require fresh trusted enrollment. Uncertain external effects are never silently repeated |
+| Compatibility | Existing runtime 0.1.0, EYL v1 and EYLJ v1 remain unchanged. Future incompatible changes require a new version and explicit migration/rejection tests |
+
+Implementation details and executed scopes: [typed contracts](https://github.com/eylema-dev/eylema/blob/main/docs/en/typed-contracts.md), [canonical codec/platform](https://github.com/eylema-dev/eylema/blob/main/docs/en/codec-platform.md), [journal](https://github.com/eylema-dev/eylema/blob/main/docs/en/local-journal.md), [recovery](https://github.com/eylema-dev/eylema/blob/main/docs/en/runtime-recovery.md). The wider [API catalogue](api-reference.md) still contains proposed operations; this decision does not declare every route implemented.
+
+## Local authority and explicit platform dependencies
+
+The initial service is single-user and loopback-only. Enforce scoped sessions, Host/Origin and CSRF checks, bounded requests and host-verified principal/approval records. A model or claimed human field cannot create authority. Already authorized routine actions do not need repeated approval; designated checkpoints, governance and stop permissions remain enforced. Public/LAN exposure, remote identity and TLS termination require a separate accepted design; the local prototype makes no remote/TLS support claim.
+
+The zero third-party production Cargo policy is unchanged. macOS CommonCrypto/Security/libSystem provide standard hash, entropy and synchronization services through narrow reviewed bindings; owned code does not implement cryptography. Metal/SDK bindings and Metal shader sources, minimal browser host JavaScript, WebAssembly/WebCrypto, WebGPU and WGSL are explicit platform inputs. Native Metal and browser WebGPU have separate device contexts; no shared GPU buffer or universal zero-copy guarantee is implied. Python/Unsloth and packaging converters stay in separately pinned development/training inventories.
 
 ## Acceptance for the first browser demonstration
-
-Task identity and execution identity remain separate, following the [API contract](api-reference.md). A task can exist before it is run. A retry or cancellation must identify the execution it affects. Saving is a durability property of accepted changes, not a new API operation invented by the screen design.
 
 | ID | Scenario | Required evidence | Roadmap |
 |---|---|---|---|
@@ -64,19 +77,10 @@ Task identity and execution identity remain separate, following the [API contrac
 | F6 | Interrupt a write or encounter an incompatible record | Declared recovery or explicit failure; no fabricated completion and no silent data loss | M2 / EYL-005 |
 | F7 | Exceed limits or encounter an unavailable capability | Bounded input/queue/work, explicit errors and truthful outcome after deadline expiry | M1–M2 / EYL-003, EYL-004, EYL-006 |
 
-The storage contract must state when a write becomes durable and how journal failure affects acknowledgement. A stop request is not success evidence, and an elapsed deadline is not proof that work stopped. Restarting must not silently re-execute uncertain external effects. The initial workload avoids external effects, but its records must preserve the distinction.
+F1–F7 must be demonstrated at the same candidate revision on the primary device, with actual person verification distinguished from trusted-host test fixtures. A cancellation receipt is not an effective stop, and a deadline is not physical termination evidence. The first product has no external task effects; negative cases still preserve truthful partial/unknown outcomes. No check is waived by this scope decision.
 
-First run the Rust state-machine and recovery tests natively on the M4 Pro Mac, then demonstrate the interface in a named browser against that service. Separately report Wasm compilation and any actual Wasm execution. M1/M2 do not establish WebGPU, model inference, training or autonomous development support.
+## License and first learning experiment
 
-## Decisions to make before implementation
+First-party source and documentation use Apache-2.0, selected by the maintainer. See [license and contribution scope](https://github.com/eylema-dev/devguide/blob/main/docs/en/licensing.md). Third-party model/data terms remain independent.
 
-| Decision | Proposal or known boundary | Required resolution |
-|---|---|---|
-| First product outcome | Task core and web flow above | Selected by the maintainer; record changes to this goal explicitly |
-| Workspace boundaries and workload | Component table and bounded deterministic steps | Review the proposal before EYL-003; directory names are not published packages |
-| Toolchain and first devices | One M4 Pro/24 GB physical Mac and separately bound native/browser workload profiles | Verify Rust 1.99.0/targets and observed macOS/SDK/browser inventory in G04; measure workloads on this device, with Linux and second physical device deferred |
-| Persistence and recovery | Local append/replay journal with explicit durability semantics | Fix format/version, torn-write detection, replay/idempotency retention and in-flight recovery behavior in EYL-005 |
-| Initial network exposure | Propose a loopback-only local prototype | Require local session, Host/Origin, CSRF, request limits and authority checks before EYL-006; remote use needs a separate authentication/TLS design |
-| Public distribution terms | License selection is pending | Maintainer decides EYL-001; public source visibility does not settle reuse terms |
-
-The next implementation task is EYL-003 after the component proposal and required environment decisions are accepted. Build the smallest workspace needed by EYL-004, connect real Rust CI and replace the documentation-only source guard in that same change. EYL-005 and EYL-006 complete the first saved-task browser flow. Separate acceptance remains necessary for every later capability.
+Keep the existing Qwen3-0.6B choice as a candidate, not an execution/support claim. Fix exact operators/artifacts and measure the deterministic baseline on the selected hardware before accepting models. Limit the first learning experiment to one permitted task, a human correction, a pinned recipe and an independent held-out comparison within a finite budget. The [learning protocol](learning-and-training.md) requires permission, retention and resource decisions before collection/training. Neither new data collection nor a training run is authorized by publishing these decisions.

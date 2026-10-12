@@ -1,16 +1,20 @@
 # Eylema Architecture v0.4 — English canonical
 
-**Architecture revision:** 0.4.0 · **Date:** 11 October 2026 · **Language:** English (canonical)
+**Architecture revision:** 0.4.1 · **Date:** 12 October 2026 · **Language:** English (canonical)
 
 **Product:** Eylema. **Descriptor:** A Simple, High-Performance Agentic AI Web Platform for Continuous Development and Operations.
 
-**Status:** Research-informed design, not an implemented framework, verified model support, or measured performance.
+**Status:** Product architecture with a growing implemented task core. The [core evidence](https://github.com/eylema-dev/eylema/blob/main/README.md) scopes current execution; model, training and complete-product acceptance remain separate.
 
-**Turkish companion:** [Full Turkish architecture](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/architecture.md). **Translation revision:** 0.4.0. The original English v0.3 edition was translated from the Turkish source. This English edition establishes the canonical language policy; repository tooling now checks translation byte fingerprints and API identifier parity; semantic equivalence still requires review.
+**Turkish companion:** [Full Turkish architecture](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/architecture.md). **Translation revision:** 0.4.1. The original English v0.3 edition was translated from the Turkish source. This English edition establishes the canonical language policy; repository tooling now checks translation byte fingerprints and API identifier parity; semantic equivalence still requires review.
 
 ## Language policy
 
 Code, comments, file names, API names, schemas, protocols and contribution records use English. Documentation is bilingual, with English as its canonical source. Turkish is the second language and must remain a complete, synchronized companion. Machine identifiers, enum values, schema keys, and protocol versions remain identical across languages. Translations record their source revision; repository fingerprint checks flag unrecorded translation edits. A language label does not establish semantic equivalence without review.
+
+## Accepted first-product decisions
+
+The 12 October 2026 [decision record and hardware inventory](project-structure.md) select a developer-first, single-user local task console, an early need-to-PR proof and Apache-2.0 for first-party source/docs. The primary M4 Pro target is retained; Mac mini M4 and Linux RTX 4070 Ti Super are additional equipment awaiting separate acceptance. Existing Rust domain types, EYL/EYLJ formats and platform bindings are retained. Optional model and learning work follows deterministic/device measurement.
 
 ## Central idea
 
@@ -22,7 +26,7 @@ The goal of AI-led development and operations covers coding, testing, review, ex
 
 ## Accepted experimental macOS scope
 
-The first release targets one Apple M4 Pro MacBook Pro with 24 GB unified memory. The observed build environment is macOS 27.0.1; actual toolchain/SDK/browser inventory and execution remain G04 and later acceptance work. Linux support and a second physical device are deferred. Several workloads measured on this Mac never count as multiple devices. The current repository stage remains documentation; selecting targets does not establish runtime support.
+The first release targets one Apple M4 Pro MacBook Pro with 24 GB unified memory. G04 records the original macOS 27.0.1 toolchain/SDK/browser inventory; each new acceptance run must record its actual environment and execution separately. Linux support and a second physical device are deferred. Several workloads measured on this Mac never count as multiple devices. This product-document repository remains documentation; current runtime evidence belongs to core, and selecting additional targets does not establish support.
 
 | Surface | First-release contract |
 |---|---|
@@ -157,14 +161,15 @@ Each operation documents purpose, inputs/outputs, preconditions, effects, author
 | 0 | Narrow goal; API/state/action contracts; support/dependency matrix | Consistent interpretation by human and AI tools |
 | 1a | Rust task contracts, deterministic executor and local journal | Authorized execution, bounded work, truthful cancellation and restart recovery |
 | 1b | Minimal web interface and local host service | Create, run, inspect, stop, save and reopen a task in a browser |
-| 1c | Optional WebGPU 3D scene | Object movement and real browser/device execution |
+| 1c | Early bounded need-to-PR workflow proof | Real scoped task, checks, separate review and actual PR; autonomous-adapter support requires its own execution |
+| 1d | Optional WebGPU 3D scene | Object movement and real browser/device execution |
 | 2 | Deterministic decision baseline, own tensor operations, small learned policy/dynamics model | Prediction/observation error, closed-loop success, CPU/GPU parity |
 | 3 | One supported small local language model and shared GPU management | LLM, decisions, and scene meet quality/resource limits together |
 | 4 | Experience records, human corrections, first Unsloth recipe/model acceptance | Traceable data-to-model improvement on separated evaluation tasks |
 | 5 | Large-AI team orchestration, GitHub PR workflow, hardware-based team release | Real requirement-to-PR flow; justified assignment across two workloads on one physical Mac |
 | 6 | Production web features and contribution ecosystem | Selected production protocols and independent contribution compatibility |
 
-API and evaluation definitions belong in every slice. The maintainer selected the task core and web flow as the first working application. [Project structure and acceptance scenarios](project-structure.md) describe the proposed implementation. A small 3D warehouse/placement environment follows that proof, with learned decisions and natural-language goals added at later milestones. None of these runtime scenarios has been implemented.
+API and evaluation definitions belong in every slice. The maintainer selected the task core and web flow as the first working application. [Project structure and acceptance scenarios](project-structure.md) describe the proposed implementation. A small 3D warehouse/placement environment follows that proof, with learned decisions and natural-language goals added at later milestones. Current core evidence records the implemented task-console subset; later capabilities still require their own acceptance.
 
 Building our own web engine, renderer, model runtime, and training ecosystem is substantial work. AI teams may accelerate development; hardware validation and maturation remain necessary. Scope expands through executed evidence, without universal model/device compatibility promises.
 

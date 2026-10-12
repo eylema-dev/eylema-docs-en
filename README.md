@@ -15,7 +15,7 @@ Canonical English architecture, API and product documentation. [Türkçe](https:
 
 ## Repository boundaries
 
-Runtime source and machine-readable schemas belong to [eylema](https://github.com/eylema-dev/eylema). Contributor policy and quality gates belong to [devguide](https://github.com/eylema-dev/devguide); [the repository map](https://github.com/eylema-dev/devguide/blob/main/docs/en/repository-map.md) names every owner. Public visibility does not settle the pending license decision.
+Runtime source and machine-readable schemas belong to [eylema](https://github.com/eylema-dev/eylema). Contributor policy and quality gates belong to [devguide](https://github.com/eylema-dev/devguide); [the repository map](https://github.com/eylema-dev/devguide/blob/main/docs/en/repository-map.md) names every owner. First-party source and documentation are licensed under [Apache-2.0](LICENSE). Separately identified third-party material, model weights and datasets retain their own terms.
 
 Read [CONTRIBUTING](CONTRIBUTING.md) before editing. Update the Turkish companion and the pinned repository set in devguide together. Local fingerprints record reviewed bytes; the repository-set gate compares both languages, API identifiers, roadmap IDs and cross-repository links. It does not prove semantic translation quality.
 

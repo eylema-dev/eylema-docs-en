@@ -172,3 +172,9 @@ Initial implementation evidence must connect a real need to a real PR and demons
 - `ai-team-protocol/v0.2/model-set-release.example.json`: synthetic candidate; not an accepted model set or hardware result.
 
 JSON Schema validates structure only. Identity/authority, compatibility, hashes, cross-references, trusted evidence producers, and state transitions require Rust semantic checks. Schema validity does not prove a working framework or AI team.
+
+## Accepted delivery priority — 12 October 2026
+
+The [first-product decision](project-structure.md) schedules one small real need-to-PR proof after the accepted task-console base, before optional GPU/model/training completion. Record NeedSpec, plan/budget, scoped change, actual checks, a separate exact-revision review and the real PR response. Human-operated tools may establish workflow feasibility; only executed coordinator/provider adapters establish autonomous delivery. G38–G43 retain their acceptance and may proceed from M2/G17 independently of learning. Full release acceptance remains separate.
+
+The additional Mac mini M4/24 GB and Linux RTX 4070 Ti Super/16 GB VRAM + 32 GB RAM equipment is an inventory, not an accepted model assignment. Preserve per-device and per-workload identities and explicitly unrun checks. Apache-2.0 covers first-party code/docs; artifact rights stay separate.
