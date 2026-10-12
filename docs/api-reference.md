@@ -1,6 +1,6 @@
 ---
 docs_language: en
-source_revision: 0.2.0
+source_revision: 0.3.0
 status: design
 canonical_language: en
 ---
@@ -13,7 +13,7 @@ English is the canonical source; [Türkçe](https://github.com/eylema-dev/eylema
 
 Human interfaces, development agents, local models and deterministic Rust skills use the same operations and authorization rules. Provider identity, model capability and a human name never establish permission. The controller resolves an authenticated principal, resource scope, accepted policy revision and any required approval. A string such as `authorization_ref` locates a record; it is not proof of authority.
 
-Owned, versioned typed definitions will become the canonical machine contract. The proposed build produces OpenAPI, JSON Schema, MCP tool descriptions and a Rust SDK from those definitions. Adapters cannot widen authority, invent defaults or translate failures into success. This generation design does not introduce third-party production dependencies. Existing schemas cover selected artifacts, not this entire API.
+Owned Rust types in `eylema-contracts` are the selected canonical source of executable semantics. Existing clients use those versioned contracts. Future generators will produce OpenAPI, JSON Schema, MCP tool descriptions and a Rust SDK from the same definitions; generated-surface support is not delivered yet. Adapters cannot widen authority, invent defaults or translate failures into success. This generation design does not introduce third-party production dependencies. Existing schemas cover selected artifacts, not this entire API.
 
 Permissions compose per operation: inspecting a model does not permit training it; proposing a release does not permit activating it. A deployment may assign several permissions to one principal while requiring separate approval for selected transitions. Browser clients cannot acquire native filesystem, process or GPU privileges by selecting `native_macos` in a request.
 
@@ -21,9 +21,11 @@ Permissions compose per operation: inspecting a model does not permit training i
 
 The experimental contract uses `native_macos` on one M4 Pro/24 GB Mac and `browser` on that same device. `native_linux` and second-device acceptance are future scope. The metadata table names permitted contexts; `listCapabilities` must report only implemented and accepted operations/backends. CPU uses `native_cpu` / `none`, Metal uses `native_gpu` / `metal`, browser CPU uses `wasm_cpu` / `none`, and WebGPU uses `webgpu` / `webgpu`. Here each pair is backend / `gpu_api`.
 
-`HardwareProfile` records the physical device; `WorkloadProfile` records `target`, `backend`, `gpu_api`, `workload_ref`, `workload_sha256` and `environment_ref`. Model-set `schema_version` 0.2.0 requires `workload_profiles`; assignments/evidence carry `hardware_profile_id` and `workload_profile_id`. Consumers resolve both references, reject duplicates/dangling IDs and verify matching physical bindings before acceptance. Schema validity or an opaque reference is not execution evidence. The root model-set 0.1.0 contract remains historical; new Mac manifests use `ai-team-protocol/v0.2/model-set-release.schema.json`. `runtime_protocol_version` remains 0.1.0 independently of this manifest revision. Document source revision is 0.2.0; operation routes remain /v0.1.
+`HardwareProfile` records the physical device; `WorkloadProfile` records `target`, `backend`, `gpu_api`, `workload_ref`, `workload_sha256` and `environment_ref`. Model-set `schema_version` 0.2.0 requires `workload_profiles`; assignments/evidence carry `hardware_profile_id` and `workload_profile_id`. Consumers resolve both references, reject duplicates/dangling IDs and verify matching physical bindings before acceptance. Schema validity or an opaque reference is not execution evidence. The root model-set 0.1.0 contract remains historical; new Mac manifests use `ai-team-protocol/v0.2/model-set-release.schema.json`. `runtime_protocol_version` remains 0.1.0 independently of this manifest revision. Document source revision is 0.3.0; operation routes remain /v0.1.
 
-Native service/CLI/model work and browser rendering have separate authority. Loopback service requires a local session, Host/Origin and CSRF checks, bounded input/time and explicit errors. Closing the browser leaves native execution alive; reopening reads snapshots/events. Storage acknowledgements follow durable journal writes in Eylema's Application Support directory. Models propose actions; they cannot authorize them. All of this remains an unimplemented contract until its runtime acceptance gate passes.
+Native service/CLI/model work and browser rendering have separate authority. Loopback service requires a local session, Host/Origin and CSRF checks, bounded input/time and explicit errors. Closing the browser leaves native execution alive; reopening reads snapshots/events. Storage acknowledgements follow durable journal writes in Eylema's Application Support directory. Models propose actions; they cannot authorize them. The [local HTTP](https://github.com/eylema-dev/eylema/blob/main/docs/en/local-http.md) and [recovery](https://github.com/eylema-dev/eylema/blob/main/docs/en/runtime-recovery.md) notes describe the implemented subset. Real person authentication and the remaining catalogue retain separate acceptance gates.
+
+The accepted first deployment is single-user and loopback-only. The [available hardware inventory](project-structure.md#available-test-inventory) adds Mac mini and Linux RTX comparison candidates without expanding accepted target/backend enums or allowing remote access. Owned Rust semantics, EYL/EYLJ compatibility and finite replay retention follow the [fixed implementation decisions](project-structure.md#fixed-task-storage-and-api-decisions).
 
 ## Oversight mechanisms
 
@@ -89,7 +91,7 @@ Training, evaluation, policy activation and release transition reuse the proposa
 
 ## Approval and execution
 
-An approval binds `proposal_id`, `plan_revision`, canonical `payload_sha256`, `state_revision`, `policy_revision`, `resource_scope` and `expires_at`. Canonical serialization and hash rules must be fixed before interoperable approval is implemented. The decision record identifies its verified principal; a claimed `human` field is insufficient when verified human approval is required.
+An approval binds `proposal_id`, `plan_revision`, canonical `payload_sha256`, `state_revision`, `policy_revision`, `resource_scope` and `expires_at`. The local implementation uses EYL codec v1 canonical approval bytes and standard host SHA-256 as specified in the [codec contract](https://github.com/eylema-dev/eylema/blob/main/docs/en/codec-platform.md); transport IDs are excluded while action order and effect content stay bound. Wider adapters must reproduce those bytes before claiming interoperability. The decision record identifies its verified principal; a claimed `human` field is insufficient when verified human approval is required.
 
 At execution, the controller rechecks permission, revocation, expiry, budget, payload and current preconditions. A changed plan or material state requires a new decision when the binding no longer matches. Where supported, resource adapters use conditional writes against the expected revision. An external world without such guarantees must expose the remaining race and observed outcome, not claim atomicity.
 
