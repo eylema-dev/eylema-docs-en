@@ -1,12 +1,12 @@
-# Eylema Architecture v0.6 — English canonical
+# Eylema Architecture v0.7 — English canonical
 
-**Architecture revision:** 0.6.0 · **Date:** 13 October 2026 · **Language:** English (canonical)
+**Architecture revision:** 0.7.0 · **Date:** 13 October 2026 · **Language:** English (canonical)
 
 **Product:** Eylema. **Descriptor:** A Simple, High-Performance Agentic AI Web Platform for Continuous Development and Operations.
 
 **Status:** Product architecture with a growing implemented task core. The [core evidence](https://github.com/eylema-dev/eylema/blob/main/README.md) scopes current execution; model, training and complete-product acceptance remain separate.
 
-**Turkish companion:** [Full Turkish architecture](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/architecture.md). **Translation revision:** 0.6.0. The original English v0.3 edition was translated from the Turkish source. This English edition establishes the canonical language policy; repository tooling now checks translation byte fingerprints and API identifier parity; semantic equivalence still requires review.
+**Turkish companion:** [Full Turkish architecture](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/architecture.md). **Translation revision:** 0.7.0. The original English v0.3 edition was translated from the Turkish source. This English edition establishes the canonical language policy; repository tooling now checks translation byte fingerprints and API identifier parity; semantic equivalence still requires review.
 
 ## Language policy
 
@@ -371,3 +371,11 @@ Building our own web engine, renderer, model runtime, and training ecosystem is 
 - [Local model team JSON Schema](https://github.com/eylema-dev/eylema/blob/main/ai-team-protocol/v0.2/model-set-release.schema.json)
 
 These are architecture and structural-contract deliverables. Repository contribution tooling and PR work are separate from the planned autonomous development team. No training, model/device benchmark, framework execution or scheduled monitoring is demonstrated by these documents.
+
+## Project-scoped memory and knowledge graph
+
+The maintainer requested a memory layer and clarified CortexDB as a knowledge-graph pattern. Six optional memory kinds are working, episodic, semantic, procedural, knowledge_graph and analytical. They are shared platform capabilities behind stable owned Rust contracts, not additional required model roles. The [memory layer](https://github.com/eylema-dev/devguide/blob/main/docs/en/memory-layer.md) defines purpose-aware writes/recall, temporal attributed graph claims, conflicting evidence, context limits, revocation and backend profiles. G63 and G87–G90 remain separate implementation/acceptance gates; this revision does not supply their runtime.
+
+SQLite device-local transactional storage and DuckDB analytical/columnar queries are reference/interchange candidates, not installed production engines or approved dependency exceptions. Their C/C++ engines do not become first-party Rust through bindings. Eylema owns the production journal/index/graph/analytical behavior; an unavailable backend fails explicitly. The maintainer's CortexDB clarification selects no package.
+
+Memory preserves source/project/schema/index revisions, validity, verification and inherited execute/collect/train/external_disclosure/ecosystem_export rights. Filtering precedes ranking/traversal and data handoff rechecks current policy. Predictions, repeated model agreement and graph links cannot become verified facts or action authority. Source withdrawal invalidates future derived/cached recall and quarantines affected training candidates; it does not prove physical erasure, recall of disclosed copies or model unlearning. Early G72 text/RAG acceptance now includes bounded G88 graph/episode recall without optional audio/vision/world models. Analytical breadth and backend interchange remain later gates.
