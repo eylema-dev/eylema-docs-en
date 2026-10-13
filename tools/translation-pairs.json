@@ -23,7 +23,7 @@
     {
       "path": "docs/architecture.md",
       "language": "en",
-      "sha256": "058c61395e6303b45947ff3afd9672eceeec59a5b8bea125b948439debe3c263"
+      "sha256": "c213b6e2558c9779877ecb7089c93c3d7ebc96aa5bcdefc7cfe3a54dab120075"
     },
     {
       "path": "docs/development-and-operations.md",
@@ -43,7 +43,7 @@
     {
       "path": "docs/roadmap.md",
       "language": "en",
-      "sha256": "27eb8268b3814904949d607702e06f8dc509f6ad139b7d4168e293e7ee9ec457"
+      "sha256": "de7650b8a82ae47a077ec8073ca6421909b5f015bbd71a8143977cb228bdc885"
     }
   ]
 }
