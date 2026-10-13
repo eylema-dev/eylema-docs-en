@@ -1,10 +1,14 @@
 # Project structure and accepted first-product decisions
 
-Revision **0.3.0**, 12 October 2026. [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/project-structure.md).
+Revision **0.4.0**, 13 October 2026. [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/project-structure.md).
 
 The maintainer accepted recommendations 1, 2, 4, 5, 6 and 8, supplied the three-device inventory below and selected Apache-2.0 on 12 October 2026. These decisions update the current product direction. They do not rewrite historical Goal records or claim that remaining runtime, model or hardware acceptance has passed.
 
 ## First user and product outcome
+
+The 13 October 2026 maintainer clarification defines Eylema as the platform that creates the agentic framework: users compose cooperative feedback loops, assign and replace compatible local models, inspect decisions and collect permitted training data. Stable role/behavior contracts outlive particular model families. MiniCPM, Qwen and local decision policies are participants in that framework, not the product's fixed identity. The [architecture revision](architecture.md#cooperative-agentic-loop-and-stable-platform-contracts) specifies the loop, replacement lifecycle, evidence and dataset boundaries; its integrations remain proposed until implemented and accepted.
+
+The platform user journey is: define a loop and its action/observation contracts → connect roles → choose accepted model assignments and collection policy → run/inspect/stop → correct and curate episodes → compare a candidate model → activate a compatible assignment at a safe boundary. The console must expose loop, model, episode and dataset versions. A placement application and a document-evidence review application should be expressible as distinct loop definitions using the same platform contracts, without rewriting the platform for each model. The deterministic console described below remains the first delivered foundation, not the limit of the product purpose.
 
 The first user is a developer building a local agent application. The first deliverable is a single-user task console: create a task, execute bounded deterministic steps, inspect progress/results, stop authorized remaining work, restart the service and reopen the same durable task. Initial steps change only application-owned task state. Remote administration, multiple tenants and arbitrary filesystem/process/network actions are outside this first product.
 
