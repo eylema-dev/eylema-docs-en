@@ -1,12 +1,12 @@
-# Eylema Architecture v0.5 — English canonical
+# Eylema Architecture v0.6 — English canonical
 
-**Architecture revision:** 0.5.0 · **Date:** 13 October 2026 · **Language:** English (canonical)
+**Architecture revision:** 0.6.0 · **Date:** 13 October 2026 · **Language:** English (canonical)
 
 **Product:** Eylema. **Descriptor:** A Simple, High-Performance Agentic AI Web Platform for Continuous Development and Operations.
 
 **Status:** Product architecture with a growing implemented task core. The [core evidence](https://github.com/eylema-dev/eylema/blob/main/README.md) scopes current execution; model, training and complete-product acceptance remain separate.
 
-**Turkish companion:** [Full Turkish architecture](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/architecture.md). **Translation revision:** 0.5.0. The original English v0.3 edition was translated from the Turkish source. This English edition establishes the canonical language policy; repository tooling now checks translation byte fingerprints and API identifier parity; semantic equivalence still requires review.
+**Turkish companion:** [Full Turkish architecture](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/architecture.md). **Translation revision:** 0.6.0. The original English v0.3 edition was translated from the Turkish source. This English edition establishes the canonical language policy; repository tooling now checks translation byte fingerprints and API identifier parity; semantic equivalence still requires review.
 
 ## Language policy
 
@@ -215,6 +215,85 @@ Use the bounded placement environment as a reference loop: a user gives an EN/TR
 | Locality and resources | Run on the primary M4 Pro; record peak unified memory, load/swap time, p95/p99 decision latency, stop latency and scene contention; prove no hosted fallback |
 
 Freeze numerical limits and evaluation sets in each implementation card after baseline measurement and before candidate scoring. These are acceptance requirements, all **not_run** for this integration revision. Roles operate at different frequencies; keep perception/planning on demand, decision work bounded and explanations off the stop path. Account jointly for weights, vision/audio preprocessing, KV/recurrent state, model transition buffers, XState runtime and browser/Metal memory. No simultaneous-residency, latency or model-quality claim follows from a model's parameter count.
+
+## Rust harness, model roles and domain selection
+
+The accepted product is a Rust harness that completes planned jobs by combining the strengths of different model types. Users compose bounded loops/subflows, choose accepted role/model assignments, execute typed tools, inspect verified outcomes and collect permitted improvement data. Local open-weight inference runs in owned Rust CPU/Metal components. Explicitly configured external frontier models may fill roles through the same contracts; selecting a local-only profile never enables external disclosure, paid calls or a hidden fallback. Harness authority, resource control and durable execution remain in Rust.
+
+Role, capability profile, model architecture and deployment location are different dimensions. A model can fill several roles with separate output contracts; a role can have several domain candidates. Subroles may refine speech, vision, code, retrieval or task-specific behavior without widening parent authority/budgets. Reasoning is a bounded evidence-linked assessment; hidden chain-of-thought is not collected. Model evaluation cannot replace executed tests or grant tool authority.
+
+### Nine stable roles with dated open-weight examples
+
+The table uses public Hugging Face repository download observations on **13 October 2026**, with exact source revisions in the [example snapshot](https://github.com/eylema-dev/devguide/blob/main/records/open-weight-role-examples.json). It combines widely downloaded examples with newer role-specific candidates; it is not a global ranking or a claim that the listed model is best for every task. Download counts are not unique users or quality. [Metric definition](https://huggingface.co/docs/hub/models-download-stats).
+
+| Role ID | Role | Responsibility | Typed output | Open-weight examples (30-day downloads) | Goals |
+|---|---|---|---|---|---|
+| `perception` | Perception | Interpret visual/video observations; audio STT is a separate profile. | ObservationEnvelope; detections/features | [Qwen/Qwen3-VL-8B-Instruct](https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct) (8,036,055); [openbmb/MiniCPM-V-4_5](https://huggingface.co/openbmb/MiniCPM-V-4_5) (87,245) | G49, G52, G53 |
+| `reasoning` | Reasoning | Evaluate constraints, alternatives and uncertainty. | Bounded solution assessment; evidence-linked summary | [Qwen/Qwen3-4B](https://huggingface.co/Qwen/Qwen3-4B) (12,626,778); [deepseek-ai/DeepSeek-R1-Distill-Qwen-7B](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B) (346,084) | G27, G30, G31 |
+| `planning` | Planning | Decompose goals into steps, dependencies and completion checks. | PlanProposal | [Qwen/Qwen3-8B](https://huggingface.co/Qwen/Qwen3-8B) (9,880,368); [openai/gpt-oss-20b](https://huggingface.co/openai/gpt-oss-20b) (5,979,446) | G32, G48, G66 |
+| `decision` | Decision / routing | Choose a route/model/tool; classify or score candidates. | DecisionAssessment; choice/yes-no/score semantics | [facebook/bart-large-mnli](https://huggingface.co/facebook/bart-large-mnli) (2,469,015); [vllm-sr/Decision-2.0-Kai-0.6B](https://huggingface.co/vllm-sr/Decision-2.0-Kai-0.6B) (1,806) | G56, G57, G58 |
+| `policy` | Action policy | Propose the next permitted action within a declared action space. | DecisionProposal; typed action candidate | [openvla/openvla-7b](https://huggingface.co/openvla/openvla-7b) (152,118); [lerobot/smolvla_base](https://huggingface.co/lerobot/smolvla_base) (135,996) | G25, G26, G54 |
+| `world_model` | World / dynamics | Predict later state, outcome or cost for candidate actions. | Predicted state/outcome; uncertainty | [facebook/vjepa2-vitl-fpc64-256](https://huggingface.co/facebook/vjepa2-vitl-fpc64-256) (316,399); [nvidia/Cosmos-Predict2.5-2B](https://huggingface.co/nvidia/Cosmos-Predict2.5-2B) (5,720) | G26, G49, G52 |
+| `specialist` | Specialist / producer | Produce a domain artifact: code, document, structured result or speech. | Bounded artifact proposal; TTS chunk profile | [Qwen/Qwen3-Coder-30B-A3B-Instruct](https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct) (398,061); [Qwen/Qwen3-4B](https://huggingface.co/Qwen/Qwen3-4B) (12,626,778) | G30, G31, G59, G61 |
+| `critic` | Evaluator / critic | Inspect plans/results and find defects or contradictions. | Findings/reward assessment; never execution proof | [Qwen/Qwen3-8B](https://huggingface.co/Qwen/Qwen3-8B) (9,880,368); [Skywork/Skywork-Reward-V2-Qwen3-8B](https://huggingface.co/Skywork/Skywork-Reward-V2-Qwen3-8B) (2,014) | G50, G51 |
+| `representation` | Representation / retrieval | Embed, retrieve and rerank relevant permitted sources. | Versioned vectors/ranked source references | [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) (220,348,634); [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3) (32,825,246); [intfloat/multilingual-e5-small](https://huggingface.co/intfloat/multilingual-e5-small) (10,051,718) | G67, G68, G69, G70, G71 |
+
+BART MNLI is a classification baseline; Decision 2.0 adds structured choice/yes-no/score behavior, not a robot policy. Its newer candidates have much lower download counts. SmolVLA/OpenVLA are robotics examples requiring task/action/state compatibility and training, not ready placement policies. V-JEPA's linked checkpoint is a video representation encoder; action-conditioned world prediction needs its own profile. Cosmos has separately gated weight terms. Reward scores and model consensus are not correctness proof. These are candidate examples, not adopted inference libraries or accepted Eylema execution. Follow each publisher model card and the separate artifact/operator/rights gates.
+
+### Separate audio, vision and text profiles
+
+| Profile | Role boundary and output | Examples (30-day downloads) | Acceptance |
+|---|---|---|---|
+| `speech_to_text` | Audio perception; bounded transcript with chunk/time/language metadata | [openai/whisper-large-v3-turbo](https://huggingface.co/openai/whisper-large-v3-turbo) (6,342,753); [nvidia/parakeet-tdt-0.6b-v3](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3) (622,817) | G59/G60/G62: EN/TR WER/CER, timing, malformed audio, streaming limits and stop |
+| `text_to_speech` | Speech production under `specialist`; voice/sample-rate/chunk/consent profile, separate from STT | [hexgrad/Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) (10,639,234); [Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice](https://huggingface.co/Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice) (1,041,642) | G59/G61/G62: intelligibility, pronunciation, first-audio latency, duration/buffer bounds and stop |
+| `image_video_perception` | Visual perception; preprocessing/frame/time/feature or detection profile | [Qwen/Qwen3-VL-8B-Instruct](https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct) (8,036,055); [openbmb/MiniCPM-V-4_5](https://huggingface.co/openbmb/MiniCPM-V-4_5) (87,245) | G49/G52/G53: encoder/projector reference, input bounds, actual M4 quality/resources |
+| `text_domain` | Distinct reasoning, planning, code, evaluation and retrieval assignments | Candidate pool in the nine-role table | Freeze task-specific EN/TR quality before comparing latency/memory |
+
+Language coverage is profile-specific. Parakeet v3's published language list excludes Turkish; it is not the Turkish STT candidate. Qwen3-TTS and Kokoro require a separately verified language/voice profile. [Chatterbox's multilingual family](https://github.com/resemble-ai/chatterbox) lists Turkish and is an additional TTS candidate; exact multilingual checkpoint, voice rights and actual Rust quality still need G59 acceptance. Published upstream performance is not M4/Rust evidence.
+
+| Text domain | Model-selection evidence before assignment |
+|---|---|
+| Reasoning / planning | Held-out job completion, constraint adherence, structured-output validity, repair/iteration limits |
+| Code / document specialist | Executed code tests or verified document outputs; exact task/domain/language revision |
+| Critic / reward | Defect-detection and preference calibration; independent outcome checks, not self-confirmation |
+| Embedding / reranking | EN/TR recall/nDCG, chunk/document lineage, dimensions, pooling, prefixes and normalization |
+
+The aim is to retain several strong domain candidates and select them for the job, within a measured combined resource budget. Popularity is a discovery signal. Artifact rights, operator/format/tokenizer compatibility, task quality and hardware capacity determine acceptance. MoE active compute is not a substitute for accounting for all resident weights, KV/state and workspace. No promise covers all open-weight architectures: support progresses from specified → reference-validated → executed on named hardware → accepted for a declared job/profile. Unsupported local profiles fail explicitly; external model use is a separate user-configured option.
+
+### Project-private records, ecosystem packages and RAG
+
+Records default to `project_private`. Execution, collection, training, external disclosure and ecosystem export use separate permissions. Observations, suggestions, actual tool effects/results, human corrections and failures retain project/loop/model/artifact lineage. Derivatives, embeddings, prompts, cached retrieval context and trained candidates inherit applicable restrictions; removing identifiers alone does not make a record shareable. Raw audio/video is separately opt-in. A private project cannot silently train a shared model or feed another project's index.
+
+Users may select permitted records, datasets, models and evaluations into a bounded share candidate with explicit terms and provenance. Review admits eligible packages into the ecosystem catalogue; imports validate hashes, compatible profiles and rights before use. Admission does not activate a model or confer project access. Publication/revocation limits remain explicit, and trained-weight retirement or retraining is distinct from guaranteed unlearning. G63–G65 own these boundaries.
+
+RAG is a composable harness subflow: permitted documents → bounded ingestion/chunking → owned Rust embeddings → project-scoped vector/hybrid retrieval → optional reranking → reasoning/planning/answer → verified citations and observed job outcome. G67–G71 bind embedding/model/index/document revisions; changing embedding spaces requires explicit reindex. Retrieved instructions are untrusted source content, not authority. Empty/contradictory evidence, stale/deleted chunks, cross-project access and unauthorized external disclosure must fail or remain explicit unknowns. Shareable retrieval/evaluation packages may grow the ecosystem while private sources stay in their project.
+
+### Human-directed development and native improvement
+
+Eylema is a platform for turning human imagination and expert judgment, supported by large language models, into flexible agentic systems. Humans define objectives, constraints and acceptance; bounded specialists propose and execute permitted work. Stable role/tool/data contracts survive model replacement. The same harness can use an explicitly connected frontier model or an accepted team of local open-weight profiles. Measured end-to-end quality, privacy and resource efficiency govern selection; a larger model or additional loop is not automatically better.
+
+The improvement loop is: permitted outcomes and corrections → versioned data/RAG sources → per-model recipe → bounded candidate training → independent held-out evaluation → human-controlled canary/promotion or rollback → reusable skill when appropriate. Execution, data collection, training, external disclosure and sharing remain separate permissions. No record grants authority to modify the platform, publish a skill or train on another project's data. Evidence records observed inputs/outputs/effects and concise decision grounds, never private hidden reasoning.
+
+| Component | Stable responsibility | Acceptance owner |
+|---|---|---|
+| Router | Send source-dependent work to RAG, code/document jobs to eligible specialists and tools; reject uncertain/unsupported routes without widening permissions | G74 |
+| Skill package | Version typed input/output, bounded subflow, tools, model profiles, permissions, budgets and acceptance evidence | G75 |
+| Per-model training profile | Pin base/artifact/tokenizer, trainable targets, adapter rank/alpha, precision/quantization, data rights and supported method; inference support does not imply training support | G76 |
+| Improvement controller | Isolate, start/observe/stop candidate jobs, checkpoints and resources; a fixture proves controller behavior only | G77 |
+| Native adapter inference | Validate exact base/targets/state-reset and independent load/merge numerical parity in owned Rust | G78 |
+| Native training | Owned Rust gradients/optimizer, CPU LoRA, Metal LoRA and separately accepted QLoRA profiles | G83–G86 |
+| Promotion | Compare a frozen independent holdout, quality/resource regressions and canary; preserve active/in-flight identity and private lineage | G79 with G36/G37 |
+
+[LoRA](https://arxiv.org/abs/2106.09685) trains low-rank updates while keeping declared base weights frozen. [QLoRA](https://arxiv.org/abs/2305.14314) combines adapter training with a quantized frozen base; its training quantization and gradient operators need distinct support. These methods are not universal drop-in compatibility. Local accepted training runs in our Rust components. Unsloth-like tooling is an explicitly reviewed development/reference or recipe aid, not a hidden production engine. The original G35 pinned external reference-run obligation remains separate from native training and owned-engine reacceptance; it cannot substitute for G83–G86.
+
+### Capacity and investment planning
+
+G80 estimates weights, all resident MoE experts, KV/recurrent state, activation/workspace, concurrent role reservations, RAG storage/index and adapter/optimizer states with checked units and explicit assumptions. G81 calibrates supported coefficients on actual named hardware; unmeasured training or other-device coefficients remain unknown. Unified memory and discrete VRAM/system RAM are distinct budgets; a reservation is not measured physical allocation.
+
+G82 compares current-hardware scheduling/model/context/precision choices against additional hardware or explicitly permitted external serving. Show quality floors, uncertainty ranges, dated price/currency/terms and excluded privacy-ineligible options. A recommendation is a reviewable investment proposal; it never places an order, changes a subscription or spends automatically. Estimates do not establish latency, quality or support without measured acceptance.
+
+The first local text/RAG job proof is G72, with actual human authorization and effective stop in G73. Optional vision, STT/TTS, world and 3D profiles do not block this first proof. Full release acceptance keeps all original and added gates.
+
 
 ## 3D and WebGPU
 

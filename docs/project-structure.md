@@ -1,6 +1,6 @@
 # Project structure and accepted first-product decisions
 
-Revision **0.4.0**, 13 October 2026. [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/project-structure.md).
+Revision **0.5.0**, 13 October 2026. [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/project-structure.md).
 
 The maintainer accepted recommendations 1, 2, 4, 5, 6 and 8, supplied the three-device inventory below and selected Apache-2.0 on 12 October 2026. These decisions update the current product direction. They do not rewrite historical Goal records or claim that remaining runtime, model or hardware acceptance has passed.
 
@@ -15,6 +15,8 @@ The first user is a developer building a local agent application. The first deli
 A usable task-console preview is evaluated at M2 without waiting for GPU, models or training. A small real need-to-PR proof follows the accepted core/example base and precedes the optional learning work. Full autonomous development/provider acceptance and the complete experimental release keep their separate M7/G44/G45 gates. The small 3D placement environment is a reference application for later capabilities, not a prerequisite for the first user's task console.
 
 Core already contains Rust task/runtime/journal/host/web components and a CLI. See [current core status](https://github.com/eylema-dev/eylema/blob/main/README.md) and its revision-bound evidence. Real person authentication remains an explicit limitation: the stock non-human session cannot prove the effective human-authorized stop scenario by receiving FORBIDDEN. This decision does not waive F3 or authorize weakening that check.
+
+The accepted harness revision adds nine role contracts, separate STT/TTS/vision profiles, domain model pools, project-private/explicit ecosystem boundaries and owned-Rust RAG. See the [role table and examples](architecture.md#rust-harness-model-roles-and-domain-selection) and the [current action plan](https://github.com/eylema-dev/devguide/blob/main/docs/en/platform-action-plan.md). The first implementation slice is the reusable loop/role registry; native inference, tool execution and complete job acceptance retain their separate cards.
 
 ## Language, ownership and component boundaries
 
@@ -88,3 +90,5 @@ F1–F7 must be demonstrated at the same candidate revision on the primary devic
 First-party source and documentation use Apache-2.0, selected by the maintainer. See [license and contribution scope](https://github.com/eylema-dev/devguide/blob/main/docs/en/licensing.md). Third-party model/data terms remain independent.
 
 Keep the existing Qwen3-0.6B choice as a candidate, not an execution/support claim. Fix exact operators/artifacts and measure the deterministic baseline on the selected hardware before accepting models. Limit the first learning experiment to one permitted task, a human correction, a pinned recipe and an independent held-out comparison within a finite budget. The [learning protocol](learning-and-training.md) requires permission, retention and resource decisions before collection/training. Neither new data collection nor a training run is authorized by publishing these decisions.
+
+The current harness revision also assigns per-model native Rust LoRA/QLoRA improvement, router/skill contracts and calibrated capacity/investment planning to G74–G86. Project-private derivatives stay private; optional external frontier models require explicit disclosure/call authority. The first local text/RAG proof G72 proceeds before optional modalities, with actual human enrollment/stop in G73.

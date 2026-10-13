@@ -1,6 +1,6 @@
 # Eylema first-release roadmap
 
-Revision **0.5.0**, 13 October 2026. English is canonical; [Türkçe](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/roadmap.md). Target: **v0.1.0 experimental** with an earlier usable task-console preview at M2. Milestones are acceptance gates, not delivery-date promises. Core now contains task/runtime/journal/service/CLI/browser work and bounded GPU components; [core evidence](https://github.com/eylema-dev/eylema/blob/main/README.md) scopes each implementation. Full human-authenticated, model, learning and autonomous-development acceptance remains separate.
+Revision **0.6.0**, 13 October 2026. English is canonical; [Türkçe](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/roadmap.md). Target: **v0.1.0 experimental** with an earlier usable task-console preview at M2. Milestones are acceptance gates, not delivery-date promises. Core now contains task/runtime/journal/service/CLI/browser work and bounded GPU components; [core evidence](https://github.com/eylema-dev/eylema/blob/main/README.md) scopes each implementation. Full human-authenticated, model, learning and autonomous-development acceptance remains separate.
 
 ## The selected first working application
 
@@ -44,22 +44,23 @@ G03 aligns these contracts; G04 verifies the actual Rust/macOS/SDK/browser envir
 
 The added model-set schema is 0.2.0; runtime/NeedSpec remain 0.1.0. Synthetic schema fixtures, document CI, build success, GPU execution, trained model quality and release acceptance are distinct evidence. No runtime, GPU or training result is established by this roadmap.
 
-## Agentic platform design revision — 13 October 2026
+## Accepted Rust harness Goal revision — 13 October 2026
 
-The maintainer now defines Eylema as the platform for composing cooperative local model loops, replacing compatible models and collecting permitted training data. The [architecture](architecture.md#cooperative-agentic-loop-and-stable-platform-contracts) turns model names into replaceable roles behind stable contracts. The existing console remains the execution foundation. The following sequence is a proposed implementation decomposition; it does not change historical Goal cards, activate work or mark any existing acceptance complete.
+The maintainer accepted a Rust harness that combines nine model roles, optional explicit external frontier-model assignments and local open-weight inference in owned Rust. The [current action plan](https://github.com/eylema-dev/devguide/blob/main/docs/en/platform-action-plan.md) and [current cards](https://github.com/eylema-dev/devguide/blob/main/records/platform-goal-plan.json) supersede only future execution proposals. Twenty-four accepted original Goal records remain unchanged; twenty-three remaining originals are revised and G46–G86 add forty-one bounded platform slices. They are planned, not completed. G40 remains blocked with its existing privacy/host/call/repair limits and no new allowance.
 
-| Order | Platform deliverable | Acceptance before advancing | Existing work it builds on |
-|---|---|---|---|
-| 1 | Loop definition, role interfaces and model/adapter registry | Two different loop definitions use the same platform contracts; incompatible action, unit and preprocessing profiles are rejected | G08–G17, G27, G38–G39 |
-| 2 | XState workflow adapter with authoritative Rust reconciliation | Dependency/profile exception reviewed first; bounded cycles, crash/replay, duplicate effects, stop and browser closure tested | G10–G16, G21 |
-| 3 | Qwen planning, local decision policy and optional MiniCPM perception | Exact local artifacts/backends accepted; full loop compared with deterministic and role-ablation baselines on M4 | G23–G32; new perception operator/profile work |
-| 4 | Decision evidence and episode/dataset builder | Inspectable explanations, permission/redaction, corrections, lineage, held-out split and withdrawal tests | G12–G13, G18, G33–G34 |
-| 5 | Model replacement and improvement loop | Two compatible policies swap safely; candidate trained from permitted episodes, evaluated separately, canaried and rolled back with truthful effect history | G35–G37 and model assignment contracts |
-| 6 | Reusable platform acceptance | Placement and document-evidence loops both run; model changes need assignment changes rather than platform rewrites; combined resources and dataset exports verified | Revised full-product acceptance after the above gates |
+| Sequence | Deliverable | Required proof |
+|---|---|---|
+| Foundation | G46, G63, G54, G50: loop/role/model contracts, project boundaries, typed tools and decision evidence | Two contract consumers, incompatible profiles/authority/egress rejected, real owned tools, exact effect/evidence history |
+| Model profiles | G27, G56, G49, G59, G67: language, decision, vision, separate STT/TTS and embeddings | Exact artifacts/operators/rights/preprocessing/output semantics; domain and EN/TR evaluation definitions |
+| Owned inference | Existing G23–G31 plus G52–G53, G57–G58, G60–G62, G68–G69 | CPU reference then actual M4 Metal; task quality, precision, latency/throughput/memory and effective stop under combined load |
+| Composition | G47–G48, G66, G55, G32, G70–G71 | Reviewed XState-only orchestration profile; bounded subflows, explicit external role contract, local-only job and grounded project RAG |
+| Learning/ecosystem | G33–G37, G64–G65 | Permitted episodes/derivatives, split/withdrawal, candidate training and owned-Rust reacceptance, inspected share packages and compatible imports |
+| Early text proof | G73, G74, G75, G72 | Actual human enrollment/stop, typed skills/router and private local EN/TR source-bound report; no vision/audio/world prerequisite |
+| Native improvement | G76–G79, G83–G86 | Per-model profiles, owned Rust gradients/CPU and Metal LoRA/QLoRA, frozen holdout and controlled skill promotion |
+| Capacity | G80–G82 | Checked estimates, actual calibration, uncertainty and dated investment scenarios; no automatic spend |
+| Reuse/release | G51, remaining G06/G40–G45/W01 | Two applications, compatible model swap and full-loop benefit; all original release/provider/distribution gates retained |
 
-XState is a proposed visible local orchestration dependency; its JavaScript runtime, build tooling and process scope must be inventoried before implementation. No hidden inference backend or model download is authorized by this documentation. MiniCPM, Qwen and task-specific policies must pass supported-profile contracts; one model family's support is not universal interchangeability.
-
-Implementation cards must fix schemas/versions, ownership, numerical acceptance thresholds, finite budgets and dependencies. The role registry and execution contracts belong to core, model manifests to models, comparisons to evals, and curated datasets/recipes to training; policy and integration pins remain in devguide. Preserve the accepted evidence for earlier Goals and explicitly revise remaining cards when the new scope is accepted. G40's unresolved provider acceptance is not bypassed by this design; its present repair/call limits are unchanged. No new Goal numbers, runtime acceptance or training success are claimed here.
+Numerical quality/resource limits are frozen after the baseline and before candidate comparison, not invented from popularity or upstream speed claims. The role table in [architecture](architecture.md#rust-harness-model-roles-and-domain-selection) distinguishes deployment from model role and separates STT, TTS, visual perception and text domains. No open-weight model is assumed universally supported. XState is an explicit proposed workflow dependency, never an inference engine or Rust authority replacement; inventory/profile acceptance precedes integration. One Goal implements at a time, with private usage refresh, exact checks, genuine separate review, current CI and maintainer-authorized merge before dependent work.
 
 ## v0.1.0 release checklist
 
