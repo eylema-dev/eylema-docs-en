@@ -1,6 +1,6 @@
 # Eylema first-release roadmap
 
-Revision **0.4.0**, 12 October 2026. English is canonical; [Türkçe](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/roadmap.md). Target: **v0.1.0 experimental** with an earlier usable task-console preview at M2. Milestones are acceptance gates, not delivery-date promises. Core now contains task/runtime/journal/service/CLI/browser work and bounded GPU components; [core evidence](https://github.com/eylema-dev/eylema/blob/main/README.md) scopes each implementation. Full human-authenticated, model, learning and autonomous-development acceptance remains separate.
+Revision **0.5.0**, 13 October 2026. English is canonical; [Türkçe](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/roadmap.md). Target: **v0.1.0 experimental** with an earlier usable task-console preview at M2. Milestones are acceptance gates, not delivery-date promises. Core now contains task/runtime/journal/service/CLI/browser work and bounded GPU components; [core evidence](https://github.com/eylema-dev/eylema/blob/main/README.md) scopes each implementation. Full human-authenticated, model, learning and autonomous-development acceptance remains separate.
 
 ## The selected first working application
 
@@ -43,6 +43,23 @@ These EYL IDs remain planning references. Accepted G00–G45/W01 cards refine th
 G03 aligns these contracts; G04 verifies the actual Rust/macOS/SDK/browser environment. G07 enables runtime source with implementation CI. F1–F7 remain the M1/M2 flow; G17 proves its external example against accepted core. The accepted action plan permits G38–G43 development orchestration after that base and before GPU work; the M7 release gate still depends on M6. G18 measures workloads before numerical resource limits are accepted. G27 fixes the model contract before tensors/loader/model execution, and G35/G36 separately prove local training and owned-engine export. G44 must exercise the full twelve-step journey on this Mac before G45 packaging. W01 may prepare truthful website content; deployment needs separate authority and matching live evidence.
 
 The added model-set schema is 0.2.0; runtime/NeedSpec remain 0.1.0. Synthetic schema fixtures, document CI, build success, GPU execution, trained model quality and release acceptance are distinct evidence. No runtime, GPU or training result is established by this roadmap.
+
+## Agentic platform design revision — 13 October 2026
+
+The maintainer now defines Eylema as the platform for composing cooperative local model loops, replacing compatible models and collecting permitted training data. The [architecture](architecture.md#cooperative-agentic-loop-and-stable-platform-contracts) turns model names into replaceable roles behind stable contracts. The existing console remains the execution foundation. The following sequence is a proposed implementation decomposition; it does not change historical Goal cards, activate work or mark any existing acceptance complete.
+
+| Order | Platform deliverable | Acceptance before advancing | Existing work it builds on |
+|---|---|---|---|
+| 1 | Loop definition, role interfaces and model/adapter registry | Two different loop definitions use the same platform contracts; incompatible action, unit and preprocessing profiles are rejected | G08–G17, G27, G38–G39 |
+| 2 | XState workflow adapter with authoritative Rust reconciliation | Dependency/profile exception reviewed first; bounded cycles, crash/replay, duplicate effects, stop and browser closure tested | G10–G16, G21 |
+| 3 | Qwen planning, local decision policy and optional MiniCPM perception | Exact local artifacts/backends accepted; full loop compared with deterministic and role-ablation baselines on M4 | G23–G32; new perception operator/profile work |
+| 4 | Decision evidence and episode/dataset builder | Inspectable explanations, permission/redaction, corrections, lineage, held-out split and withdrawal tests | G12–G13, G18, G33–G34 |
+| 5 | Model replacement and improvement loop | Two compatible policies swap safely; candidate trained from permitted episodes, evaluated separately, canaried and rolled back with truthful effect history | G35–G37 and model assignment contracts |
+| 6 | Reusable platform acceptance | Placement and document-evidence loops both run; model changes need assignment changes rather than platform rewrites; combined resources and dataset exports verified | Revised full-product acceptance after the above gates |
+
+XState is a proposed visible local orchestration dependency; its JavaScript runtime, build tooling and process scope must be inventoried before implementation. No hidden inference backend or model download is authorized by this documentation. MiniCPM, Qwen and task-specific policies must pass supported-profile contracts; one model family's support is not universal interchangeability.
+
+Implementation cards must fix schemas/versions, ownership, numerical acceptance thresholds, finite budgets and dependencies. The role registry and execution contracts belong to core, model manifests to models, comparisons to evals, and curated datasets/recipes to training; policy and integration pins remain in devguide. Preserve the accepted evidence for earlier Goals and explicitly revise remaining cards when the new scope is accepted. G40's unresolved provider acceptance is not bypassed by this design; its present repair/call limits are unchanged. No new Goal numbers, runtime acceptance or training success are claimed here.
 
 ## v0.1.0 release checklist
 
