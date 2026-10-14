@@ -1,8 +1,8 @@
-Revision: **0.2.0** · Canonical language: **EN** · Secondary language: **TR** · [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/development-and-operations.md)
+Revision: **0.2.0** · Canonical language: **EN** · Secondary language: **TR** · [Turkish companion](https://github.com/eyleme-dev/eylema-docs-tr/blob/main/docs/development-and-operations.md)
 
-# Eylema — Development and local operations team protocols — v0.2
+# Eyleme — Development and local operations team protocols — v0.2
 
-Date: 11 October 2026. Status: **protocol design to implement**. No working orchestrator, model selection, autonomous PR generation, or scheduled monitoring has been installed. Repository contribution templates and CI gates are defined separately in [CONTRIBUTING.md](https://github.com/eylema-dev/devguide/blob/main/CONTRIBUTING.md). NeedSpec schema and runtime protocol remain 0.1.0; the new macOS ModelSetRelease schema is 0.2.0. Examples are not actual tasks, models, or measurements.
+Date: 11 October 2026. Status: **protocol design to implement**. No working orchestrator, model selection, autonomous PR generation, or scheduled monitoring has been installed. Repository contribution templates and CI gates are defined separately in [CONTRIBUTING.md](https://github.com/eyleme-dev/devguide/blob/main/CONTRIBUTING.md). NeedSpec schema and runtime protocol remain 0.1.0; the new macOS ModelSetRelease schema is 0.2.0. Examples are not actual tasks, models, or measurements.
 
 Related designs: [architecture](architecture.md), [behavioral API and human oversight](api-reference.md), and [learning data and training](learning-and-training.md).
 

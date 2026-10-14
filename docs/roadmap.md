@@ -1,6 +1,6 @@
-# Eylema first-release roadmap
+# Eyleme first-release roadmap
 
-Revision **0.7.0**, 13 October 2026. English is canonical; [Türkçe](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/roadmap.md). Target: **v0.1.0 experimental** with an earlier usable task-console preview at M2. Milestones are acceptance gates, not delivery-date promises. Core now contains task/runtime/journal/service/CLI/browser work and bounded GPU components; [core evidence](https://github.com/eylema-dev/eylema/blob/main/README.md) scopes each implementation. Full human-authenticated, model, learning and autonomous-development acceptance remains separate.
+Revision **0.7.0**, 13 October 2026. English is canonical; [Türkçe](https://github.com/eyleme-dev/eylema-docs-tr/blob/main/docs/roadmap.md). Target: **v0.1.0 experimental** with an earlier usable task-console preview at M2. Milestones are acceptance gates, not delivery-date promises. Core now contains task/runtime/journal/service/CLI/browser work and bounded GPU components; [core evidence](https://github.com/eyleme-dev/eyleme/blob/main/README.md) scopes each implementation. Full human-authenticated, model, learning and autonomous-development acceptance remains separate.
 
 ## The selected first working application
 
@@ -46,7 +46,7 @@ The added model-set schema is 0.2.0; runtime/NeedSpec remain 0.1.0. Synthetic sc
 
 ## Accepted Rust harness Goal revision — 13 October 2026
 
-The maintainer accepted a Rust harness that combines nine model roles, optional explicit external frontier-model assignments and local open-weight inference in owned Rust. The [current action plan](https://github.com/eylema-dev/devguide/blob/main/docs/en/platform-action-plan.md) and [current cards](https://github.com/eylema-dev/devguide/blob/main/records/platform-goal-plan.json) supersede only future execution proposals. Twenty-four accepted original Goal records remain unchanged; twenty-three remaining originals are revised and G46–G86 add forty-one bounded platform slices. They are planned, not completed. G40 remains blocked with its existing privacy/host/call/repair limits and no new allowance.
+The maintainer accepted a Rust harness that combines nine model roles, optional explicit external frontier-model assignments and local open-weight inference in owned Rust. The [current action plan](https://github.com/eyleme-dev/devguide/blob/main/docs/en/platform-action-plan.md) and [current cards](https://github.com/eyleme-dev/devguide/blob/main/records/platform-goal-plan.json) supersede only future execution proposals. Twenty-four accepted original Goal records remain unchanged; twenty-three remaining originals are revised and G46–G86 add forty-one bounded platform slices. They are planned, not completed. G40 remains blocked with its existing privacy/host/call/repair limits and no new allowance.
 
 | Sequence | Deliverable | Required proof |
 |---|---|---|
@@ -77,4 +77,4 @@ Accepted Linux runtime/GPU support, second physical-device acceptance, a general
 
 ## Memory acceptance extension
 
-G87–G90 add purpose-aware memory contracts, owned episodic/semantic/knowledge-graph recall, analytical snapshots and bounded backend profiles. G72 now requires G88; optional analytics/interchange does not delay that early local text proof. All four new gates feed G44. Existing required release/historical acceptance and blocked G40 limits are preserved. The [memory design](https://github.com/eylema-dev/devguide/blob/main/docs/en/memory-layer.md) defines evidence, retention and Rust dependency boundaries. These are planned gates, not executed database/model support.
+G87–G90 add purpose-aware memory contracts, owned episodic/semantic/knowledge-graph recall, analytical snapshots and bounded backend profiles. G72 now requires G88; optional analytics/interchange does not delay that early local text proof. All four new gates feed G44. Existing required release/historical acceptance and blocked G40 limits are preserved. The [memory design](https://github.com/eyleme-dev/devguide/blob/main/docs/en/memory-layer.md) defines evidence, retention and Rust dependency boundaries. These are planned gates, not executed database/model support.

@@ -1,12 +1,12 @@
-# Eylema Architecture v0.7 — English canonical
+# Eyleme Architecture v0.7 — English canonical
 
 **Architecture revision:** 0.7.0 · **Date:** 13 October 2026 · **Language:** English (canonical)
 
-**Product:** Eylema. **Descriptor:** A Simple, High-Performance Agentic AI Web Platform for Continuous Development and Operations.
+**Product:** Eyleme. **Descriptor:** A Simple, High-Performance Agentic AI Web Platform for Continuous Development and Operations.
 
-**Status:** Product architecture with a growing implemented task core. The [core evidence](https://github.com/eylema-dev/eylema/blob/main/README.md) scopes current execution; model, training and complete-product acceptance remain separate.
+**Status:** Product architecture with a growing implemented task core. The [core evidence](https://github.com/eyleme-dev/eyleme/blob/main/README.md) scopes current execution; model, training and complete-product acceptance remain separate.
 
-**Turkish companion:** [Full Turkish architecture](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/architecture.md). **Translation revision:** 0.7.0. The original English v0.3 edition was translated from the Turkish source. This English edition establishes the canonical language policy; repository tooling now checks translation byte fingerprints and API identifier parity; semantic equivalence still requires review.
+**Turkish companion:** [Full Turkish architecture](https://github.com/eyleme-dev/eylema-docs-tr/blob/main/docs/architecture.md). **Translation revision:** 0.7.0. The original English v0.3 edition was translated from the Turkish source. This English edition establishes the canonical language policy; repository tooling now checks translation byte fingerprints and API identifier parity; semantic equivalence still requires review.
 
 ## Language policy
 
@@ -18,7 +18,7 @@ The 12 October 2026 [decision record and hardware inventory](project-structure.m
 
 ## Central idea
 
-**Eylema is the platform for defining, running and evolving cooperative agentic loops.** The maintainer clarified this product purpose on 13 October 2026: compose the loop, replace its models and collect permitted data for training. MiniCPM, Qwen and local open-weight decision models are interchangeable participants; the platform owns the stable roles, contracts and lifecycle. The task console is the first interface into that platform and the existing deterministic core is its execution foundation.
+**Eyleme is the platform for defining, running and evolving cooperative agentic loops.** The maintainer clarified this product purpose on 13 October 2026: compose the loop, replace its models and collect permitted data for training. MiniCPM, Qwen and local open-weight decision models are interchangeable participants; the platform owns the stable roles, contracts and lifecycle. The task console is the first interface into that platform and the existing deterministic core is its execution foundation.
 
 An application declares observations, state, goals, actions, role connections, permissions, resource budgets and acceptance conditions. Local participants exchange typed proposals; authorized execution produces observations that feed back into the next decision. Large models can develop these definitions and implementations through the reviewed development workflow. Human corrections and measured outcomes support later dataset and model revisions.
 
@@ -40,7 +40,7 @@ The first release targets one Apple M4 Pro MacBook Pro with 24 GB unified memory
 
 HardwareProfile identifies the one physical device and observed capacity. WorkloadProfile identifies execution target, backend, GPU API and exact workload/environment versions on that device. Assignments and evidence bind both identities through model-set schema 0.2.0; the historical 0.1.0 schema stays unchanged. Duplicate/dangling IDs, actual capacity, source/hash trust and evidence coverage need semantic validation; structural JSON validation cannot prove them.
 
-Browser closure does not terminate the local executor or Metal worker. Reopening attaches to current snapshots/events. The local session must enforce Host/Origin checks, CSRF protection, request size/time limits and scoped authority. Durable state defaults to Eylema's macOS Application Support directory; acknowledgement follows durable journal writes. Credentials, private raw training records and hidden model reasoning are excluded from ordinary event records. Platform randomness and hashes use standard macOS services, not new cryptography. macOS, SDKs, browser, drivers, host bindings, Metal shaders and WGSL remain explicit dependencies.
+Browser closure does not terminate the local executor or Metal worker. Reopening attaches to current snapshots/events. The local session must enforce Host/Origin checks, CSRF protection, request size/time limits and scoped authority. Durable state defaults to the legacy `Eylema` macOS Application Support directory; acknowledgement follows durable journal writes. Credentials, private raw training records and hidden model reasoning are excluded from ordinary event records. Platform randomness and hashes use standard macOS services, not new cryptography. macOS, SDKs, browser, drivers, host bindings, Metal shaders and WGSL remain explicit dependencies.
 
 ## Topology
 
@@ -114,7 +114,7 @@ This revision defines the platform design requested on 13 October 2026. The inte
 
 ### Compose a loop, then assign models
 
-Eylema provides a versioned loop definition, role-contract registry, model/adapter catalog, execution console, evidence store and dataset builder. A developer connects roles, declares action/observation schemas and budgets, chooses compatible local models, then runs and inspects an accepted configuration. The same loop can later use different weights or model families without rewriting its application logic.
+Eyleme provides a versioned loop definition, role-contract registry, model/adapter catalog, execution console, evidence store and dataset builder. A developer connects roles, declares action/observation schemas and budgets, chooses compatible local models, then runs and inspects an accepted configuration. The same loop can later use different weights or model families without rewriting its application logic.
 
 Three approaches were considered: one multimodal model handling every role; an unrestricted conversation among agents; and a typed cooperative loop. The proposed loop keeps specialist roles independently replaceable, bounds execution and supports comparisons against deterministic baselines. Shared model instances may fill several roles when accepted measurements justify this; role boundaries do not require a process or a permanently loaded model per role.
 
@@ -128,7 +128,7 @@ Three approaches were considered: one multimodal model handling every role; an u
 | Execution and authority | First-party Rust core and EYL/EYLJ | Validate current state, capabilities, approvals and budgets; execute and persist actual results |
 | Explanation and evaluation | Structured decision evidence plus task-specific evaluators | Show why an action was proposed, why it was permitted or rejected, and what actually happened |
 
-The maintainer clarified “Jev” as locally running open-weight decision models. It is not a selected product, package or checkpoint. Decision Transformer is an example of an offline sequence-based policy trained on task trajectories; a published architecture or a checkpoint for another environment is not a general decision engine for Eylema. A small task-trained policy/ranker and deterministic search are comparison baselines. MiniCPM and Qwen candidates likewise require exact artifact, tokenizer/preprocessor, operator, rights and backend profiles before execution. The upstream families establish candidate capabilities, not our compatibility or Turkish task quality. [MiniCPM](https://github.com/OpenBMB/MiniCPM-V), [Qwen3](https://qwenlm.github.io/blog/qwen3/), [Decision Transformer paper](https://arxiv.org/abs/2106.01345), [official implementation](https://github.com/kzl/decision-transformer).
+The maintainer clarified “Jev” as locally running open-weight decision models. It is not a selected product, package or checkpoint. Decision Transformer is an example of an offline sequence-based policy trained on task trajectories; a published architecture or a checkpoint for another environment is not a general decision engine for Eyleme. A small task-trained policy/ranker and deterministic search are comparison baselines. MiniCPM and Qwen candidates likewise require exact artifact, tokenizer/preprocessor, operator, rights and backend profiles before execution. The upstream families establish candidate capabilities, not our compatibility or Turkish task quality. [MiniCPM](https://github.com/OpenBMB/MiniCPM-V), [Qwen3](https://qwenlm.github.io/blog/qwen3/), [Decision Transformer paper](https://arxiv.org/abs/2106.01345), [official implementation](https://github.com/kzl/decision-transformer).
 
 ```mermaid
 flowchart LR
@@ -194,7 +194,7 @@ A deterministic evidence-based explanation is always available from these fields
 
 ### Training data comes from the whole loop
 
-Collection is an explicit per-loop policy with purpose, permitted fields/modalities, retention, access and export rules. Execution permission alone does not permit training. Store minimal evidence and authorized artifact references; raw audio/video/screenshots are separately opt-in. Exclude credentials, unrelated user content and hidden reasoning. Rights are checked for weights and data independently of Eylema's first-party license.
+Collection is an explicit per-loop policy with purpose, permitted fields/modalities, retention, access and export rules. Execution permission alone does not permit training. Store minimal evidence and authorized artifact references; raw audio/video/screenshots are separately opt-in. Exclude credentials, unrelated user content and hidden reasoning. Rights are checked for weights and data independently of Eyleme's first-party license.
 
 An episode connects goal, observations, state estimates, available actions, proposed/selected/executed action, timing, actual outcomes, failures, human corrections and all relevant versions. Preserve disagreement, rejection, timeout and aborted episodes instead of training only on successes. The model's preferred action is a proposal; observed outcome and reviewed human correction have distinct provenance. Reward/label definitions are versioned and do not turn every successful command into successful task completion.
 
@@ -224,7 +224,7 @@ Role, capability profile, model architecture and deployment location are differe
 
 ### Nine stable roles with dated open-weight examples
 
-The table uses public Hugging Face repository download observations on **13 October 2026**, with exact source revisions in the [example snapshot](https://github.com/eylema-dev/devguide/blob/main/records/open-weight-role-examples.json). It combines widely downloaded examples with newer role-specific candidates; it is not a global ranking or a claim that the listed model is best for every task. Download counts are not unique users or quality. [Metric definition](https://huggingface.co/docs/hub/models-download-stats).
+The table uses public Hugging Face repository download observations on **13 October 2026**, with exact source revisions in the [example snapshot](https://github.com/eyleme-dev/devguide/blob/main/records/open-weight-role-examples.json). It combines widely downloaded examples with newer role-specific candidates; it is not a global ranking or a claim that the listed model is best for every task. Download counts are not unique users or quality. [Metric definition](https://huggingface.co/docs/hub/models-download-stats).
 
 | Role ID | Role | Responsibility | Typed output | Open-weight examples (30-day downloads) | Goals |
 |---|---|---|---|---|---|
@@ -238,7 +238,7 @@ The table uses public Hugging Face repository download observations on **13 Octo
 | `critic` | Evaluator / critic | Inspect plans/results and find defects or contradictions. | Findings/reward assessment; never execution proof | [Qwen/Qwen3-8B](https://huggingface.co/Qwen/Qwen3-8B) (9,880,368); [Skywork/Skywork-Reward-V2-Qwen3-8B](https://huggingface.co/Skywork/Skywork-Reward-V2-Qwen3-8B) (2,014) | G50, G51 |
 | `representation` | Representation / retrieval | Embed, retrieve and rerank relevant permitted sources. | Versioned vectors/ranked source references | [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) (220,348,634); [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3) (32,825,246); [intfloat/multilingual-e5-small](https://huggingface.co/intfloat/multilingual-e5-small) (10,051,718) | G67, G68, G69, G70, G71 |
 
-BART MNLI is a classification baseline; Decision 2.0 adds structured choice/yes-no/score behavior, not a robot policy. Its newer candidates have much lower download counts. SmolVLA/OpenVLA are robotics examples requiring task/action/state compatibility and training, not ready placement policies. V-JEPA's linked checkpoint is a video representation encoder; action-conditioned world prediction needs its own profile. Cosmos has separately gated weight terms. Reward scores and model consensus are not correctness proof. These are candidate examples, not adopted inference libraries or accepted Eylema execution. Follow each publisher model card and the separate artifact/operator/rights gates.
+BART MNLI is a classification baseline; Decision 2.0 adds structured choice/yes-no/score behavior, not a robot policy. Its newer candidates have much lower download counts. SmolVLA/OpenVLA are robotics examples requiring task/action/state compatibility and training, not ready placement policies. V-JEPA's linked checkpoint is a video representation encoder; action-conditioned world prediction needs its own profile. Cosmos has separately gated weight terms. Reward scores and model consensus are not correctness proof. These are candidate examples, not adopted inference libraries or accepted Eyleme execution. Follow each publisher model card and the separate artifact/operator/rights gates.
 
 ### Separate audio, vision and text profiles
 
@@ -270,7 +270,7 @@ RAG is a composable harness subflow: permitted documents → bounded ingestion/c
 
 ### Human-directed development and native improvement
 
-Eylema is a platform for turning human imagination and expert judgment, supported by large language models, into flexible agentic systems. Humans define objectives, constraints and acceptance; bounded specialists propose and execute permitted work. Stable role/tool/data contracts survive model replacement. The same harness can use an explicitly connected frontier model or an accepted team of local open-weight profiles. Measured end-to-end quality, privacy and resource efficiency govern selection; a larger model or additional loop is not automatically better.
+Eyleme is a platform for turning human imagination and expert judgment, supported by large language models, into flexible agentic systems. Humans define objectives, constraints and acceptance; bounded specialists propose and execute permitted work. Stable role/tool/data contracts survive model replacement. The same harness can use an explicitly connected frontier model or an accepted team of local open-weight profiles. Measured end-to-end quality, privacy and resource efficiency govern selection; a larger model or additional loop is not automatically better.
 
 The improvement loop is: permitted outcomes and corrections → versioned data/RAG sources → per-model recipe → bounded candidate training → independent held-out evaluation → human-controlled canary/promotion or rollback → reusable skill when appropriate. Execution, data collection, training, external disclosure and sharing remain separate permissions. No record grants authority to modify the platform, publish a skill or train on another project's data. Evidence records observed inputs/outputs/effects and concise decision grounds, never private hidden reasoning.
 
@@ -367,15 +367,15 @@ Building our own web engine, renderer, model runtime, and training ecosystem is 
 - [Development and local operations team protocols](development-and-operations.md)
 - [Learning data and training protocol](learning-and-training.md)
 - [English API reference](api-reference.md)
-- [Development request JSON Schema](https://github.com/eylema-dev/eylema/blob/main/ai-team-protocol/request.schema.json)
-- [Local model team JSON Schema](https://github.com/eylema-dev/eylema/blob/main/ai-team-protocol/v0.2/model-set-release.schema.json)
+- [Development request JSON Schema](https://github.com/eyleme-dev/eyleme/blob/main/ai-team-protocol/request.schema.json)
+- [Local model team JSON Schema](https://github.com/eyleme-dev/eyleme/blob/main/ai-team-protocol/v0.2/model-set-release.schema.json)
 
 These are architecture and structural-contract deliverables. Repository contribution tooling and PR work are separate from the planned autonomous development team. No training, model/device benchmark, framework execution or scheduled monitoring is demonstrated by these documents.
 
 ## Project-scoped memory and knowledge graph
 
-The maintainer requested a memory layer and clarified CortexDB as a knowledge-graph pattern. Six optional memory kinds are working, episodic, semantic, procedural, knowledge_graph and analytical. They are shared platform capabilities behind stable owned Rust contracts, not additional required model roles. The [memory layer](https://github.com/eylema-dev/devguide/blob/main/docs/en/memory-layer.md) defines purpose-aware writes/recall, temporal attributed graph claims, conflicting evidence, context limits, revocation and backend profiles. G63 and G87–G90 remain separate implementation/acceptance gates; this revision does not supply their runtime.
+The maintainer requested a memory layer and clarified CortexDB as a knowledge-graph pattern. Six optional memory kinds are working, episodic, semantic, procedural, knowledge_graph and analytical. They are shared platform capabilities behind stable owned Rust contracts, not additional required model roles. The [memory layer](https://github.com/eyleme-dev/devguide/blob/main/docs/en/memory-layer.md) defines purpose-aware writes/recall, temporal attributed graph claims, conflicting evidence, context limits, revocation and backend profiles. G63 and G87–G90 remain separate implementation/acceptance gates; this revision does not supply their runtime.
 
-SQLite device-local transactional storage and DuckDB analytical/columnar queries are reference/interchange candidates, not installed production engines or approved dependency exceptions. Their C/C++ engines do not become first-party Rust through bindings. Eylema owns the production journal/index/graph/analytical behavior; an unavailable backend fails explicitly. The maintainer's CortexDB clarification selects no package.
+SQLite device-local transactional storage and DuckDB analytical/columnar queries are reference/interchange candidates, not installed production engines or approved dependency exceptions. Their C/C++ engines do not become first-party Rust through bindings. Eyleme owns the production journal/index/graph/analytical behavior; an unavailable backend fails explicitly. The maintainer's CortexDB clarification selects no package.
 
 Memory preserves source/project/schema/index revisions, validity, verification and inherited execute/collect/train/external_disclosure/ecosystem_export rights. Filtering precedes ranking/traversal and data handoff rechecks current policy. Predictions, repeated model agreement and graph links cannot become verified facts or action authority. Source withdrawal invalidates future derived/cached recall and quarantines affected training candidates; it does not prove physical erasure, recall of disclosed copies or model unlearning. Early G72 text/RAG acceptance now includes bounded G88 graph/episode recall without optional audio/vision/world models. Analytical breadth and backend interchange remain later gates.
