@@ -1,12 +1,12 @@
 # Project structure and accepted first-product decisions
 
-Revision **0.5.0**, 13 October 2026. [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/project-structure.md).
+Revision **0.5.0**, 13 October 2026. [Turkish companion](https://github.com/eyleme-dev/eylema-docs-tr/blob/main/docs/project-structure.md).
 
 The maintainer accepted recommendations 1, 2, 4, 5, 6 and 8, supplied the three-device inventory below and selected Apache-2.0 on 12 October 2026. These decisions update the current product direction. They do not rewrite historical Goal records or claim that remaining runtime, model or hardware acceptance has passed.
 
 ## First user and product outcome
 
-The 13 October 2026 maintainer clarification defines Eylema as the platform that creates the agentic framework: users compose cooperative feedback loops, assign and replace compatible local models, inspect decisions and collect permitted training data. Stable role/behavior contracts outlive particular model families. MiniCPM, Qwen and local decision policies are participants in that framework, not the product's fixed identity. The [architecture revision](architecture.md#cooperative-agentic-loop-and-stable-platform-contracts) specifies the loop, replacement lifecycle, evidence and dataset boundaries; its integrations remain proposed until implemented and accepted.
+The 13 October 2026 maintainer clarification defines Eyleme as the platform that creates the agentic framework: users compose cooperative feedback loops, assign and replace compatible local models, inspect decisions and collect permitted training data. Stable role/behavior contracts outlive particular model families. MiniCPM, Qwen and local decision policies are participants in that framework, not the product's fixed identity. The [architecture revision](architecture.md#cooperative-agentic-loop-and-stable-platform-contracts) specifies the loop, replacement lifecycle, evidence and dataset boundaries; its integrations remain proposed until implemented and accepted.
 
 The platform user journey is: define a loop and its action/observation contracts → connect roles → choose accepted model assignments and collection policy → run/inspect/stop → correct and curate episodes → compare a candidate model → activate a compatible assignment at a safe boundary. The console must expose loop, model, episode and dataset versions. A placement application and a document-evidence review application should be expressible as distinct loop definitions using the same platform contracts, without rewriting the platform for each model. The deterministic console described below remains the first delivered foundation, not the limit of the product purpose.
 
@@ -14,13 +14,13 @@ The first user is a developer building a local agent application. The first deli
 
 A usable task-console preview is evaluated at M2 without waiting for GPU, models or training. A small real need-to-PR proof follows the accepted core/example base and precedes the optional learning work. Full autonomous development/provider acceptance and the complete experimental release keep their separate M7/G44/G45 gates. The small 3D placement environment is a reference application for later capabilities, not a prerequisite for the first user's task console.
 
-Core already contains Rust task/runtime/journal/host/web components and a CLI. See [current core status](https://github.com/eylema-dev/eylema/blob/main/README.md) and its revision-bound evidence. Real person authentication remains an explicit limitation: the stock non-human session cannot prove the effective human-authorized stop scenario by receiving FORBIDDEN. This decision does not waive F3 or authorize weakening that check.
+Core already contains Rust task/runtime/journal/host/web components and a CLI. See [current core status](https://github.com/eyleme-dev/eyleme/blob/main/README.md) and its revision-bound evidence. Real person authentication remains an explicit limitation: the stock non-human session cannot prove the effective human-authorized stop scenario by receiving FORBIDDEN. This decision does not waive F3 or authorize weakening that check.
 
-The accepted harness revision adds nine role contracts, separate STT/TTS/vision profiles, domain model pools, project-private/explicit ecosystem boundaries and owned-Rust RAG. See the [role table and examples](architecture.md#rust-harness-model-roles-and-domain-selection) and the [current action plan](https://github.com/eylema-dev/devguide/blob/main/docs/en/platform-action-plan.md). The first implementation slice is the reusable loop/role registry; native inference, tool execution and complete job acceptance retain their separate cards.
+The accepted harness revision adds nine role contracts, separate STT/TTS/vision profiles, domain model pools, project-private/explicit ecosystem boundaries and owned-Rust RAG. See the [role table and examples](architecture.md#rust-harness-model-roles-and-domain-selection) and the [current action plan](https://github.com/eyleme-dev/devguide/blob/main/docs/en/platform-action-plan.md). The first implementation slice is the reusable loop/role registry; native inference, tool execution and complete job acceptance retain their separate cards.
 
 ## Language, ownership and component boundaries
 
-English is canonical; Turkish is the synchronized companion. Code, identifiers, templates and task records remain English. The [repository map](https://github.com/eylema-dev/devguide/blob/main/docs/en/repository-map.md) owns repository boundaries. Product contracts stay in the language repositories, shared contribution policy in devguide, and implementation/schemas in core.
+English is canonical; Turkish is the synchronized companion. Code, identifiers, templates and task records remain English. The [repository map](https://github.com/eyleme-dev/devguide/blob/main/docs/en/repository-map.md) owns repository boundaries. Product contracts stay in the language repositories, shared contribution policy in devguide, and implementation/schemas in core.
 
 Use one owned Rust workspace and one local native host process. Add a module/crate only for a tested boundary and an actual consumer.
 
@@ -44,8 +44,8 @@ These aliases record the maintainer's available equipment, not accepted runtime 
 | Inventory alias | Owner-reported equipment | Initial role | Evidence boundary |
 |---|---|---|---|
 | `mbp-m4-pro-24` | MacBook Pro, Apple M4 Pro, 24 GB unified memory | Primary local task-console acceptance; later CPU/Metal and browser WebGPU measurements | Existing core evidence is scoped to this device; this decision change does not rerun hardware acceptance |
-| `mini-m4-24` | Mac mini, Apple M4, 24 GB unified memory | Second physical Mac compatibility and resource comparison | OS/tools/browser and all Eylema execution on this device: not_run |
-| `rtx4070ti-super-16-32` | NVIDIA RTX 4070 Ti Super, 16 GB VRAM, 32 GB system RAM | Later discrete-GPU comparison and training feasibility | Linux owner-confirmed; CPU/distribution/kernel unconfirmed; driver/backend/access and all Eylema execution: not_run |
+| `mini-m4-24` | Mac mini, Apple M4, 24 GB unified memory | Second physical Mac compatibility and resource comparison | OS/tools/browser and all Eyleme execution on this device: not_run |
+| `rtx4070ti-super-16-32` | NVIDIA RTX 4070 Ti Super, 16 GB VRAM, 32 GB system RAM | Later discrete-GPU comparison and training feasibility | Linux owner-confirmed; CPU/distribution/kernel unconfirmed; driver/backend/access and all Eyleme execution: not_run |
 
 The two additional machines do not block the primary task-console preview. Their acceptance is a separate bounded task; an inventory row does not enable a Linux/Windows backend or authorize remote access, installation or training. Apple unified memory and RTX dedicated VRAM/system RAM are recorded separately, never combined into an invented interchangeable budget.
 
@@ -63,7 +63,7 @@ First measure the same versioned deterministic task with fixed inputs, cold/warm
 | Restart | Confirmed identities/results/effects survive. Unfinished execution becomes OutcomeUnknown; old sessions retire and require fresh trusted enrollment. Uncertain external effects are never silently repeated |
 | Compatibility | Existing runtime 0.1.0, EYL v1 and EYLJ v1 remain unchanged. Future incompatible changes require a new version and explicit migration/rejection tests |
 
-Implementation details and executed scopes: [typed contracts](https://github.com/eylema-dev/eylema/blob/main/docs/en/typed-contracts.md), [canonical codec/platform](https://github.com/eylema-dev/eylema/blob/main/docs/en/codec-platform.md), [journal](https://github.com/eylema-dev/eylema/blob/main/docs/en/local-journal.md), [recovery](https://github.com/eylema-dev/eylema/blob/main/docs/en/runtime-recovery.md). The wider [API catalogue](api-reference.md) still contains proposed operations; this decision does not declare every route implemented.
+Implementation details and executed scopes: [typed contracts](https://github.com/eyleme-dev/eyleme/blob/main/docs/en/typed-contracts.md), [canonical codec/platform](https://github.com/eyleme-dev/eyleme/blob/main/docs/en/codec-platform.md), [journal](https://github.com/eyleme-dev/eyleme/blob/main/docs/en/local-journal.md), [recovery](https://github.com/eyleme-dev/eyleme/blob/main/docs/en/runtime-recovery.md). The wider [API catalogue](api-reference.md) still contains proposed operations; this decision does not declare every route implemented.
 
 ## Local authority and explicit platform dependencies
 
@@ -87,7 +87,7 @@ F1–F7 must be demonstrated at the same candidate revision on the primary devic
 
 ## License and first learning experiment
 
-First-party source and documentation use Apache-2.0, selected by the maintainer. See [license and contribution scope](https://github.com/eylema-dev/devguide/blob/main/docs/en/licensing.md). Third-party model/data terms remain independent.
+First-party source and documentation use Apache-2.0, selected by the maintainer. See [license and contribution scope](https://github.com/eyleme-dev/devguide/blob/main/docs/en/licensing.md). Third-party model/data terms remain independent.
 
 Keep the existing Qwen3-0.6B choice as a candidate, not an execution/support claim. Fix exact operators/artifacts and measure the deterministic baseline on the selected hardware before accepting models. Limit the first learning experiment to one permitted task, a human correction, a pinned recipe and an independent held-out comparison within a finite budget. The [learning protocol](learning-and-training.md) requires permission, retention and resource decisions before collection/training. Neither new data collection nor a training run is authorized by publishing these decisions.
 

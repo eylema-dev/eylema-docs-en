@@ -1,6 +1,6 @@
-Revision: **0.2.0** · Canonical language: **EN** · Secondary language: **TR** · [Turkish companion](https://github.com/eylema-dev/eylema-docs-tr/blob/main/docs/learning-and-training.md)
+Revision: **0.2.0** · Canonical language: **EN** · Secondary language: **TR** · [Turkish companion](https://github.com/eyleme-dev/eylema-docs-tr/blob/main/docs/learning-and-training.md)
 
-# Eylema — Learning data and training protocol — v0.2
+# Eyleme — Learning data and training protocol — v0.2
 
 Date: 11 October 2026. Status: **design proposal**. This document does not enable collection, training, or deployment. No training, export, performance measurement, or model acceptance test has run.
 
