@@ -4,6 +4,12 @@ Revision **0.5.0**, 13 October 2026. [Turkish companion](https://github.com/eyle
 
 The maintainer accepted recommendations 1, 2, 4, 5, 6 and 8, supplied the three-device inventory below and selected Apache-2.0 on 12 October 2026. These decisions update the current product direction. They do not rewrite historical Goal records or claim that remaining runtime, model or hardware acceptance has passed.
 
+## Accepted single-brand model — 15 October 2026
+
+The maintainer selected **Eyleme** as the single brand and [eyleme.dev](https://eyleme.dev) as the public community entry point. The open-source Eyleme core remains independently usable under Apache-2.0. **Eyleme Derleme** and **Eyleme Onama** are separately developed private-source paid subscription products; this changes their commercial positioning, not the task-console acceptance scenarios below. Supported standalone core workflows retain their basic access and safety controls without either subscription.
+
+The [product-family contract](https://github.com/eyleme-dev/eyleme/blob/main/docs/en/product-family.md) owns the **Derleme → Onama → Eyleme** explanation, optional integration boundary and public/private separation. New private implementations do not revoke existing open-source license grants. Billing, prices and general subscription availability are not implemented by this document decision.
+
 ## First user and product outcome
 
 The 13 October 2026 maintainer clarification defines Eyleme as the platform that creates the agentic framework: users compose cooperative feedback loops, assign and replace compatible local models, inspect decisions and collect permitted training data. Stable role/behavior contracts outlive particular model families. MiniCPM, Qwen and local decision policies are participants in that framework, not the product's fixed identity. The [architecture revision](architecture.md#cooperative-agentic-loop-and-stable-platform-contracts) specifies the loop, replacement lifecycle, evidence and dataset boundaries; its integrations remain proposed until implemented and accepted.
