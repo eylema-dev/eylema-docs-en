@@ -1,6 +1,6 @@
 # Project structure and accepted first-product decisions
 
-Revision **0.5.0**, 13 October 2026. [Turkish companion](https://github.com/eyleme-dev/eylema-docs-tr/blob/main/docs/project-structure.md).
+Revision **0.5.0**, 13 October 2026. [Turkish companion](https://github.com/eyleme-dev/eyleme-docs-tr/blob/main/docs/project-structure.md).
 
 The maintainer accepted recommendations 1, 2, 4, 5, 6 and 8, supplied the three-device inventory below and selected Apache-2.0 on 12 October 2026. These decisions update the current product direction. They do not rewrite historical Goal records or claim that remaining runtime, model or hardware acceptance has passed.
 
@@ -33,7 +33,7 @@ Use one owned Rust workspace and one local native host process. Add a module/cra
 | `crates/eylema-host` | Runtime/journal composition, durable recovery and local service boundary |
 | `crates/eylema-web` | Local browser interface and bounded presentation/transport adapters |
 | `apps/eylema` | Native CLI/service composition and configuration |
-| `eylema-examples/task-console` | External consumer pinned to a core revision; no fork of runtime code |
+| `eyleme-examples/task-console` | External consumer pinned to a core revision; no fork of runtime code |
 
 Dependencies point toward contracts. The host owns execution, authority and persistence. The browser presents state and uses declared GPU capabilities; it cannot directly modify the journal or confer native authority. Browser closure leaves native work alive; reopening reads snapshots/events. Rust 1.99.0 and aarch64-apple-darwin remain the native baseline; selected portable libraries compile to wasm32-unknown-unknown. Compilation and actual target execution are separate evidence.
 

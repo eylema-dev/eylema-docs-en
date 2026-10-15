@@ -1,4 +1,4 @@
-Revision: **0.2.0** · Canonical language: **EN** · Secondary language: **TR** · [Turkish companion](https://github.com/eyleme-dev/eylema-docs-tr/blob/main/docs/development-and-operations.md)
+Revision: **0.2.0** · Canonical language: **EN** · Secondary language: **TR** · [Turkish companion](https://github.com/eyleme-dev/eyleme-docs-tr/blob/main/docs/development-and-operations.md)
 
 # Eyleme — Development and local operations team protocols — v0.2
 

@@ -1,6 +1,6 @@
 # Eyleme first-release roadmap
 
-Revision **0.7.0**, 13 October 2026. English is canonical; [Türkçe](https://github.com/eyleme-dev/eylema-docs-tr/blob/main/docs/roadmap.md). Target: **v0.1.0 experimental** with an earlier usable task-console preview at M2. Milestones are acceptance gates, not delivery-date promises. Core now contains task/runtime/journal/service/CLI/browser work and bounded GPU components; [core evidence](https://github.com/eyleme-dev/eyleme/blob/main/README.md) scopes each implementation. Full human-authenticated, model, learning and autonomous-development acceptance remains separate.
+Revision **0.7.0**, 13 October 2026. English is canonical; [Türkçe](https://github.com/eyleme-dev/eyleme-docs-tr/blob/main/docs/roadmap.md). Target: **v0.1.0 experimental** with an earlier usable task-console preview at M2. Milestones are acceptance gates, not delivery-date promises. Core now contains task/runtime/journal/service/CLI/browser work and bounded GPU components; [core evidence](https://github.com/eyleme-dev/eyleme/blob/main/README.md) scopes each implementation. Full human-authenticated, model, learning and autonomous-development acceptance remains separate.
 
 ## The selected first working application
 

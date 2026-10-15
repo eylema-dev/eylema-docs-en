@@ -13,37 +13,37 @@
     {
       "path": "README.md",
       "language": "en",
-      "sha256": "66f6e6ea6efcda863dc17185683341aebcbbd371328c2c6c73f1198d5f36efb3"
+      "sha256": "3e7c699afb64d6e54ddc1196800ad19b852d40f4bad82338af09f66181177f2f"
     },
     {
       "path": "docs/api-reference.md",
       "language": "en",
-      "sha256": "1fa3f438564c8388b3bcac73f642fdaa210963fd262c9441eca39da19a773ae1"
+      "sha256": "201d75867e19f0330a53317a416b03f71a238ba9bd8974a341ec47b0e77b6008"
     },
     {
       "path": "docs/architecture.md",
       "language": "en",
-      "sha256": "5c771466468e0f7e94553a1fc099dcd81be6be1ae1b5f196b0e9b6ce980296fd"
+      "sha256": "1d2ea3cbacdea10d03628ec5bbd312fbe5775d674d02029695c20d27779edd49"
     },
     {
       "path": "docs/development-and-operations.md",
       "language": "en",
-      "sha256": "2abf6b3fd0a70fcab9b639407422b862a03a9e109823d3048f4b5c246dcd6af3"
+      "sha256": "7e7f29d0b71c77f0a01e3144f14bba1d1c23b503ffeb44267f25bfc8159e6133"
     },
     {
       "path": "docs/learning-and-training.md",
       "language": "en",
-      "sha256": "e9e419625fb76a180f85f3a2ebdb3aaaa18ff7fd4430a97135fa1b406ed60cc7"
+      "sha256": "79c637f954f07f8ec90bfb3488f6f0513dfc2a289ef58aa06b65f2c71cda166b"
     },
     {
       "path": "docs/project-structure.md",
       "language": "en",
-      "sha256": "984d411bf28cdbc333e0f819f433ab787854eb03afa3547ee8016a5ee78c13ce"
+      "sha256": "b9af91538d18eb26384fd3eb02f22d9a1efcd345e9a6522ed8a4ec8caa838bd3"
     },
     {
       "path": "docs/roadmap.md",
       "language": "en",
-      "sha256": "bb09aa8d225e462c8083c73d5612410c73c835fb20fa126a635b02003c860f66"
+      "sha256": "c26d417207964a7be73b4b302a6babef8ade8866aafaabfa31d93241ee74790f"
     }
   ]
 }
