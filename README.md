@@ -1,8 +1,8 @@
 # Eyleme English documentation
 
-**Name update — 14 October 2026:** The product is **Eyleme** (formerly Eylema); the companion product is **Derleme** (formerly Derlema), and **Onama** keeps its name. The GitHub organization is now `eyleme-dev` (formerly `eylema-dev`). The main repository is now `eyleme-dev/eyleme`. Auxiliary repository basenames, domains, commands, crate/package names, environment variables, data paths and protocol/schema identifiers retain their current spelling for compatibility. Historical evidence preserves its original names and URLs.
+**Name update — 14 October 2026:** The product is **Eyleme** (formerly Eylema); the companion product is **Derleme** (formerly Derlema), and **Onama** keeps its name. The GitHub organization is now `eyleme-dev` (formerly `eylema-dev`). The main repository is now `eyleme-dev/eyleme`. On 15 October 2026 the six `eylema-*` child repositories became `eyleme-*`. Domains, commands, crate/package names, environment variables, data paths and protocol/schema identifiers retain their current spelling for compatibility. Historical evidence preserves its original names and URLs.
 
-Canonical English architecture, API and product documentation. [Türkçe](https://github.com/eyleme-dev/eylema-docs-tr).
+Canonical English architecture, API and product documentation. [Türkçe](https://github.com/eyleme-dev/eyleme-docs-tr).
 
 **Stage: design and repository tooling.** No Rust application, GPU result, trained model or production deployment is supplied by these documents. The first product direction is a deterministic task console; later milestones add compute, models and learning.
 

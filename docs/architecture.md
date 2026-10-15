@@ -6,7 +6,7 @@
 
 **Status:** Product architecture with a growing implemented task core. The [core evidence](https://github.com/eyleme-dev/eyleme/blob/main/README.md) scopes current execution; model, training and complete-product acceptance remain separate.
 
-**Turkish companion:** [Full Turkish architecture](https://github.com/eyleme-dev/eylema-docs-tr/blob/main/docs/architecture.md). **Translation revision:** 0.7.0. The original English v0.3 edition was translated from the Turkish source. This English edition establishes the canonical language policy; repository tooling now checks translation byte fingerprints and API identifier parity; semantic equivalence still requires review.
+**Turkish companion:** [Full Turkish architecture](https://github.com/eyleme-dev/eyleme-docs-tr/blob/main/docs/architecture.md). **Translation revision:** 0.7.0. The original English v0.3 edition was translated from the Turkish source. This English edition establishes the canonical language policy; repository tooling now checks translation byte fingerprints and API identifier parity; semantic equivalence still requires review.
 
 ## Language policy
 

@@ -1,4 +1,4 @@
-Revision: **0.2.0** · Canonical language: **EN** · Secondary language: **TR** · [Turkish companion](https://github.com/eyleme-dev/eylema-docs-tr/blob/main/docs/learning-and-training.md)
+Revision: **0.2.0** · Canonical language: **EN** · Secondary language: **TR** · [Turkish companion](https://github.com/eyleme-dev/eyleme-docs-tr/blob/main/docs/learning-and-training.md)
 
 # Eyleme — Learning data and training protocol — v0.2
 

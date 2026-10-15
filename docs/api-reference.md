@@ -7,7 +7,7 @@ canonical_language: en
 
 # Eyleme — Shared API and human oversight — v0.1
 
-English is the canonical source; [Türkçe](https://github.com/eyleme-dev/eylema-docs-tr/blob/main/docs/api-reference.md) is its complete translation. Operation identifiers, field names, states and error codes remain English in every language. This document specifies a proposed contract. The named endpoints, SDK, generators and conformance suite are not implemented or demonstrated by this document. No OpenAPI specification is delivered in this revision.
+English is the canonical source; [Türkçe](https://github.com/eyleme-dev/eyleme-docs-tr/blob/main/docs/api-reference.md) is its complete translation. Operation identifiers, field names, states and error codes remain English in every language. This document specifies a proposed contract. The named endpoints, SDK, generators and conformance suite are not implemented or demonstrated by this document. No OpenAPI specification is delivered in this revision.
 
 ## One contract, several clients
 
