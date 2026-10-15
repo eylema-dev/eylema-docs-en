@@ -16,6 +16,12 @@ Code, comments, file names, API names, schemas, protocols and contribution recor
 
 The 12 October 2026 [decision record and hardware inventory](project-structure.md) select a developer-first, single-user local task console, an early need-to-PR proof and Apache-2.0 for first-party source/docs. The primary M4 Pro target is retained; Mac mini M4 and Linux RTX 4070 Ti Super are additional equipment awaiting separate acceptance. Existing Rust domain types, EYL/EYLJ formats and platform bindings are retained. Optional model and learning work follows deterministic/device measurement.
 
+## Accepted product and commercial boundary — 15 October 2026
+
+The [product-family contract](https://github.com/eyleme-dev/eyleme/blob/main/docs/en/product-family.md) establishes one **Eyleme** brand: the public Apache-2.0 community core plus separately developed private-source subscription products **Eyleme Derleme** and **Eyleme Onama**. Present the combined flow as **Derleme → Onama → Eyleme**. This ordering does not make a subscription or commercial service a prerequisite for supported standalone core workflows; core access and safety checks stay open source.
+
+Optional commercial integrations use explicit versioned interfaces and separately evaluated authority. Onama's policy checks can apply across collection, planning, execution and disclosure; neither shared branding nor an entitlement widens authority. Public interface documentation and community extensions may remain open while commercial implementations and customer data stay private. These are accepted product boundaries, not claims of shipped billing, integrations or production acceptance. Existing technical identifiers, runtime formats and evidence gates are unchanged.
+
 ## Central idea
 
 **Eyleme is the platform for defining, running and evolving cooperative agentic loops.** The maintainer clarified this product purpose on 13 October 2026: compose the loop, replace its models and collect permitted data for training. MiniCPM, Qwen and local open-weight decision models are interchangeable participants; the platform owns the stable roles, contracts and lifecycle. The task console is the first interface into that platform and the existing deterministic core is its execution foundation.
